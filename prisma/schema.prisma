@@ -8,17 +8,60 @@ datasource db {
   // extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
-model User {
+model Wallet {
   id        Int      @id @default(sequence(minValue: 1)) @db.Int2
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String @unique
-  hash  String
+  address String  @unique
+  Board   Board[]
 
-  firstName String?
-  lastName  String?
+  @@map("wallets")
+}
 
-  // @@id(fields: [])
-  @@map("users")
+model Board {
+  id       Int     @id @default(sequence(minValue: 1)) @db.Int4
+  name     String
+  isActive Boolean
+  walletId Int
+  wallet   Wallet  @relation(fields: [walletId], references: [id])
+
+  columns Column[] // One-to-many relationship with Column model
+
+  @@map("boards")
+}
+
+model Column {
+  id      Int    @id @default(sequence(minValue: 1)) @db.Int4
+  name    String
+  boardId Int
+  board   Board  @relation(fields: [boardId], references: [id])
+
+  tasks Task[] // One-to-many relationship with Task model
+
+  @@map("columns")
+}
+
+model Task {
+  id          Int     @id @default(sequence(minValue: 1)) @db.Int4
+  title       String
+  description String?
+  // status      String //is Same as columnId
+  columnId    Int
+
+  column Column @relation(fields: [columnId], references: [id])
+
+  Subtask Subtask[]
+
+  @@map("tasks")
+}
+
+model Subtask {
+  id          Int     @id @default(sequence(minValue: 1)) @db.Int4
+  title       String
+  isCompleted Boolean @default(false)
+  taskId      Int
+  task        Task    @relation(fields: [taskId], references: [id])
+
+  @@map("subtasks")
 }
