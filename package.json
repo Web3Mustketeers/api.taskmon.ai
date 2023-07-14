@@ -1,7 +1,7 @@
 {
-  "name": "dean-scheduler",
+  "name": "api.taskmon.ai",
   "version": "0.1.0",
-  "description": "Web2 backend of dean-scheduler",
+  "description": "Web2 backend of taskmon.ai",
   "author": "laciferin@gmail.com",
   "private": true,
   "license": "MIT",
