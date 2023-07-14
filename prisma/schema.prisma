@@ -8,6 +8,8 @@ datasource db {
   // extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
+// checkout https://www.prisma.io/docs/guides/other/multi-schema
+
 model Wallet {
   id        Int      @id @default(sequence(minValue: 1)) @db.Int2
   createdAt DateTime @default(now())
