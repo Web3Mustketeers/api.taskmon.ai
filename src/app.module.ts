@@ -13,12 +13,15 @@ let envFile = '.env'
 switch (mode) {
   case 'test':
     envFile = '.env.test'
+    process.env.NODE_ENV = 'testing'
     break
   case 'prod':
+    process.env.NODE_ENV = 'production'
     envFile = '.env.prod'
     break
   default:
     mode = 'dev'
+    process.env.NODE_ENV = 'development'
     envFile = '.env.local'
 }
 
