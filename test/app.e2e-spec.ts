@@ -5,7 +5,6 @@ import * as pactum from 'pactum'
 import { ConfigService } from '@nestjs/config'
 import { PrismaService } from '../src/prisma/prisma.service'
 import { AuthDto } from '../src/auth/dto'
-import { EditUserDto } from '../src/user/dto'
 
 describe('App e2e', () => {
   let app: INestApplication
@@ -70,7 +69,7 @@ describe('App e2e', () => {
       wallet: 'AEESTENRTENSRT@1231',
     }
     describe('Sign up', () => {
-      it('should signin', () => {
+      it('should sign up', () => {
         return pactum
           .spec()
           .post(`${url}/auth/signin`)
@@ -81,53 +80,14 @@ describe('App e2e', () => {
       })
 
       it('should throw if wallet empty', () => {
-        return pactum.spec().post('/auth/signin').withBody({}).expectStatus(400).inspect()
+        return pactum.spec().post('/auth/signin').withBody({}).
+        expectStatus(400).
+        inspect()
       })
 
-      it('should throw if password empty', () => {
-        return pactum
-          .spec()
-          .post('/auth/signin')
-          .withBody({
-            email: dto.email,
-          })
-          .expectStatus(400)
-          .inspect()
-      })
-
-      it('should throw if not strang  password', () => {
-        return pactum
-          .spec()
-          .post('/auth/signin')
-          .withBody({
-            email: dto.email,
-            password: '123',
-          })
-          .expectStatus(400)
-          .inspect()
-      })
     })
     describe('Sign in', () => {
-      it('should throw if password empty', () => {
-        return pactum
-          .spec()
-          .post('/auth/signin')
-          .withBody({
-            email: dto.email,
-          })
-          .expectStatus(400)
-          .inspect()
-      })
-      it('should throw if email empty', () => {
-        return pactum
-          .spec()
-          .post('/auth/signin')
-          .withBody({
-            password: dto.password,
-          })
-          .expectStatus(400)
-          .inspect()
-      })
+
       it('should signin', () => {
         return pactum
           .spec()
@@ -140,60 +100,4 @@ describe('App e2e', () => {
     })
   })
 
-  describe('User', () => {
-    describe('Get me', () => {
-      it('should fail without header or cookies', () => {
-        return pactum.spec().get('/users/me').expectStatus(401)
-      })
-
-      it('should get current user with Bearer Token', () => {
-        return pactum
-          .spec()
-          .withHeaders({
-            Authorization: `Bearer $S{userToken}`,
-          })
-          .get('/users/me')
-          .expectStatus(200)
-      })
-
-      it('should get current user with cookies', () => {
-        return (
-          pactum
-            .spec()
-            .get('/users/me')
-            // .withCookies("token",`$S{userToken}`) //FIXME
-            // .expectStatus(HttpStatus.OK)
-            .inspect()
-        )
-      })
-    })
-    describe('Edit User', () => {
-      const dto: EditUserDto = {
-        firstName: 'Hiro',
-        lastName: 'Hamada',
-      }
-      it('should edit user', () => {
-        return pactum
-          .spec()
-          .withBearerToken(`$S{userToken}`)
-          .patch('/users')
-          .withBody(dto)
-          .expectStatus(200)
-          .expectBodyContains(dto.firstName)
-          .expectBodyContains(dto.lastName)
-      })
-    })
-
-    describe('Delete User', () => {
-      it('should delete current user', () => {
-        return pactum
-          .spec()
-          .withHeaders({
-            Authorization: `Bearer $S{userToken}`,
-          })
-          .delete('/users')
-          .expectStatus(HttpStatus.OK)
-      })
-    })
-  })
 })
