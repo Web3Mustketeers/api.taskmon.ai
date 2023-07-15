@@ -35,7 +35,19 @@ async function main() {
       columnId: todo_cln.id,
     },
   })
-  console.log({ wallet, board: todo_board, todo_cln, todo_task })
+  const subtasks_scaffold = await prisma.subtask.createMany({
+    data: [
+      { title: 'integrate apolo server', taskId: todo_task.id },
+      { title: 'nest g resource task', taskId: todo_task.id, isCompleted: true },
+      {
+        title: 'go with schema first resource creation',
+        taskId: todo_task.id,
+        isCompleted: true,
+      },
+    ],
+  })
+
+  console.log({ wallet, board: todo_board, todo_cln, todo_task, subtasks_scaffold })
 }
 
 main()
