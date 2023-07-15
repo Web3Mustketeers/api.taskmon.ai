@@ -5,7 +5,6 @@ import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module'
 import { PrismaModule } from './prisma/prisma.module'
 import * as Joi from 'joi'
-import { UserModule } from './user/user.module'
 import { CacheModule } from '@nestjs/cache-manager'
 
 let mode = process.env.MODE
@@ -34,12 +33,12 @@ switch (mode) {
         PORT: Joi.number().default(1606),
         DATABASE_URL: Joi.string(),
         JWT_SECRET: Joi.string(),
+        JWT_MAX_AGE: Joi.number().default(2 * 60 * 60 * 1000),
       }),
     }),
     CacheModule.register({ isGlobal: true }),
     PrismaModule,
     AuthModule,
-    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
