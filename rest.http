@@ -2,7 +2,7 @@
 POST {{u}}/auth/signin
 Content-Type: application/x-www-form-urlencoded
 
-wallet=123213123ENrentresn
+wallet=12321213
 
 ###
 
