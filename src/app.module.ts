@@ -6,6 +6,10 @@ import { AuthModule } from './auth/auth.module'
 import { PrismaModule } from './prisma/prisma.module'
 import * as Joi from 'joi'
 import { CacheModule } from '@nestjs/cache-manager'
+import { TaskModule } from './task/task.module'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+import { GraphQLDateTime } from 'graphql-iso-date'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -40,8 +44,19 @@ switch (mode) {
       }),
     }),
     CacheModule.register({ isGlobal: true }),
+    GraphQLModule.forRoot({
+      playground: mode in ['dev', 'test'],
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      typePaths: ['./**/*.graphql'],
+      resolvers: { DateTime: GraphQLDateTime },
+      subscriptions: {
+        'graphql-ws': true,
+        'subscriptions-transport-ws': true,
+      },
+    }),
     PrismaModule,
     AuthModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
