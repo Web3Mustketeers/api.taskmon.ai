@@ -11,7 +11,6 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 import { GraphQLDateTime } from 'graphql-iso-date'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 
 // import {
 //   ApolloServerPluginLandingPageLocalDefault,
@@ -53,7 +52,7 @@ switch (mode) {
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: mode in ['dev', 'test'],
+      playground: false, //mode in ['dev', 'test'], always use appolo playground
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
       typePaths: ['./**/*.graphql'],
       resolvers: { DateTime: GraphQLDateTime },
