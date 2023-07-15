@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
 
   const config = app.get<ConfigService>(ConfigService)
-  // app.enableShutdownHooks()
+  app.enableShutdownHooks()
 
   app.use(cookieParser(config.get('JWT_SECRET')))
   app.enableCors()
