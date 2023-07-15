@@ -66,27 +66,23 @@ describe('App e2e', () => {
 
   describe('Auth', function () {
     const dto: AuthDto = {
-      wallet: 'AEESTENRTENSRT@1231',
+      wallet: 'eH9js2vBZGCxb3MmweX9zkJDHp7DmJuZS31tTrQFw8e',
     }
-    describe('Sign up', () => {
-      it('should sign up', () => {
+    describe('Sign in', () => {
+      it('should throw an error due to invalid wallet address', () => {
         return pactum
           .spec()
           .post(`${url}/auth/signin`)
-          .withBody(dto)
-          .withRequestTimeout(2 * 1000) //cold start
-          .expectStatus(HttpStatus.CREATED)
+          .withBody({
+            wallet: 'AEESTENRTENSRT@1231',
+          })
+          .expectStatus(HttpStatus.BAD_REQUEST)
           .inspect()
       })
 
       it('should throw if wallet empty', () => {
-        return pactum.spec().post('/auth/signin').withBody({}).
-        expectStatus(400).
-        inspect()
+        return pactum.spec().post('/auth/signin').withBody({}).expectStatus(400).inspect()
       })
-
-    })
-    describe('Sign in', () => {
 
       it('should signin', () => {
         return pactum
@@ -99,5 +95,4 @@ describe('App e2e', () => {
       })
     })
   })
-
 })
