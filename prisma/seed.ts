@@ -24,11 +24,21 @@ async function main() {
     },
   })
 
+  const scaffold_task = await prisma.task.create({
+    data: {
+      title: 'Scaffold: nestjs',
+      description: `
+      - Support /auth endpoint,
+      `.trim(),
+      columnId: todo_cln.id,
+    },
+  })
+
   const todo_task = await prisma.task.create({
     data: {
       title: 'Scaffold: graphql',
       description: `
-      - Will support /graphql endpoint,
+      - Support /graphql endpoint,
       - Will be be able query all the tasks,
       - Create Mutations to support CRUD on tasks,boards, subtasks
       `.trim(),
