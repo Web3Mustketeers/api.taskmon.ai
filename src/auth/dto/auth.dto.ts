@@ -1,4 +1,14 @@
-import { IsNotEmpty } from 'class-validator'
+import {
+  IS_LENGTH,
+  IsAlphanumeric,
+  IsBtcAddress,
+  IsEthereumAddress,
+  IsFullWidth,
+  IsNotEmpty,
+  MaxLength,
+  MinLength,
+  minLength,
+} from 'class-validator'
 // import { PublicKey } from '@solana/web3.js'
 /*
 function IsSolanaAddress(address:string){
@@ -23,6 +33,9 @@ export class AuthDto {
 
 export class AuthDto {
   // @IsSolanaAddress()
+  @IsAlphanumeric()
   @IsNotEmpty()
+  @MinLength(32)
+  @MaxLength(44)
   wallet: string
 }
