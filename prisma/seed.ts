@@ -27,6 +27,11 @@ async function main() {
   const todo_task = await prisma.task.create({
     data: {
       title: 'Scaffold: graphql',
+      description: `
+      - Will support /graphql endpoint,
+      - Will be be able query all the tasks,
+      - Create Mutations to support CRUD on tasks,boards, subtasks
+      `.trim(),
       columnId: todo_cln.id,
     },
   })
