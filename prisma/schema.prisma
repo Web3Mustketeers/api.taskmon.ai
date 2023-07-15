@@ -26,7 +26,7 @@ model Board {
   name     String
   isActive Boolean
   walletId Int
-  wallet   Wallet  @relation(fields: [walletId], references: [id])
+  wallet   Wallet  @relation(fields: [walletId], references: [id], onDelete: Cascade)
 
   columns Column[] // One-to-many relationship with Column model
 
@@ -37,7 +37,7 @@ model Column {
   id      Int    @id @default(sequence(minValue: 1)) @db.Int4
   name    String
   boardId Int
-  board   Board  @relation(fields: [boardId], references: [id])
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
 
   tasks Task[] // One-to-many relationship with Task model
 
@@ -51,7 +51,7 @@ model Task {
   // status      String //is Same as columnId
   columnId    Int
 
-  column Column @relation(fields: [columnId], references: [id])
+  column Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
 
   Subtask Subtask[]
 
@@ -63,7 +63,7 @@ model Subtask {
   title       String
   isCompleted Boolean @default(false)
   taskId      Int
-  task        Task    @relation(fields: [taskId], references: [id])
+  task        Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
 
   @@map("subtasks")
 }
