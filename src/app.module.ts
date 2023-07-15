@@ -8,8 +8,15 @@ import * as Joi from 'joi'
 import { CacheModule } from '@nestjs/cache-manager'
 import { TaskModule } from './task/task.module'
 import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 import { GraphQLDateTime } from 'graphql-iso-date'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+
+// import {
+//   ApolloServerPluginLandingPageLocalDefault,
+//   ApolloServerPluginLandingPageProductionDefault,
+// } from 'apollo/server/plugin/landingPage/default'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -44,9 +51,10 @@ switch (mode) {
       }),
     }),
     CacheModule.register({ isGlobal: true }),
-    GraphQLModule.forRoot({
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
       playground: mode in ['dev', 'test'],
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
       typePaths: ['./**/*.graphql'],
       resolvers: { DateTime: GraphQLDateTime },
       subscriptions: {
