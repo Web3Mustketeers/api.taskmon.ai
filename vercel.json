@@ -1,5 +1,9 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run start:dev",
+  "outputDirectory": "dist",
+  "installCommand": "pnpm install" ,
   "builds": [
     {
       "src": "src/main.ts",
