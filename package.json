@@ -95,7 +95,9 @@
     "testEnvironment": "node"
   },
   "engines": {
-    "node": "19.x"
+    "node": ">=18.0.0",
+    "npm": ">=6.0.0",
+    "pnpm": ">=8.6.6"
   },
   "repository": {
     "type": "git",
