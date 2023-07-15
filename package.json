@@ -31,6 +31,7 @@
     "test:e2e:watch": "MODE=test jest --watch --no-cache --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/apollo": "^12.0.7",
     "@nestjs/cache-manager": "^2.0.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.0.0",
@@ -55,10 +56,12 @@
     "joi": "^17.9.2",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
+    "prisma-nestjs-graphql": "^18.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@apollo/server-plugin-landing-page-graphql-playground": "^4.0.1",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
