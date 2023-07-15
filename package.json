@@ -9,6 +9,7 @@
     "seed": "ts-node --transpile-only prisma/seed.ts"
   },
   "scripts": {
+    "prebuild": "prisma generate",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "dev": "concurrently \"pnpm:start:dev\" \"pnpm:gen-typings\" \"pnpm:prisma:generate\"",
@@ -106,6 +107,11 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=6.0.0",
+    "pnpm": ">=8.6.6"
   },
   "repository": {
     "type": "git",
