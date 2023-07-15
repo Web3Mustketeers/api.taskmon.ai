@@ -8,6 +8,13 @@ datasource db {
   // extensions = [uuidOssp(map: "uuid-ossp")]
 }
 
+generator nestgraphql {
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
+}
+
 // checkout https://www.prisma.io/docs/guides/other/multi-schema
 
 model Wallet {
