@@ -69,7 +69,7 @@ describe('App e2e', () => {
       wallet: 'eH9js2vBZGCxb3MmweX9zkJDHp7DmJuZS31tTrQFw8e',
     }
     describe('Sign in', () => {
-      it('should throw an error due to invalid wallet address', () => {
+      it('error: wallet must contain only letters and numbers', () => {
         return pactum
           .spec()
           .post(`${url}/auth/signin`)
@@ -77,6 +77,23 @@ describe('App e2e', () => {
             wallet: 'AEESTENRTENSRT@1231',
           })
           .expectStatus(HttpStatus.BAD_REQUEST)
+          .expectJsonLike({
+            message: ['wallet must contain only letters and numbers'],
+          })
+          .inspect()
+      })
+
+      it('error: wallet must be longer than 32 chars', () => {
+        return pactum
+          .spec()
+          .post(`${url}/auth/signin`)
+          .withBody({
+            wallet: 'rsteisnrten213123esrne',
+          })
+          .expectStatus(HttpStatus.BAD_REQUEST)
+          .expectJsonLike({
+            message: ['wallet must be longer than or equal to 32 characters'],
+          })
           .inspect()
       })
 
@@ -90,6 +107,7 @@ describe('App e2e', () => {
           .post('/auth/signin')
           .withBody(dto)
           .expectStatus(200)
+          .expectBodyContains('access_token')
           .stores('userToken', 'access_token')
           .expectCookiesLike('token')
       })
