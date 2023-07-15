@@ -1,4 +1,4 @@
-import { IsEmail, IsEthereumAddress, IsNotEmpty, IsStrongPassword } from "class-validator";
+import { IsEmail, IsEthereumAddress, IsNotEmpty, IsStrongPassword } from 'class-validator'
 // import {PublicKey} from '@solana/web3.js'
 //
 // function validateSolAddress(address:string){

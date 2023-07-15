@@ -3,8 +3,8 @@ import {
   Injectable,
   OnApplicationBootstrap,
   OnApplicationShutdown,
-  OnModuleInit
-} from "@nestjs/common";
+  OnModuleInit,
+} from '@nestjs/common'
 import { PrismaClient } from '@prisma/client'
 import { ConfigService } from '@nestjs/config'
 

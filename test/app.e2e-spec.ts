@@ -67,35 +67,27 @@ describe('App e2e', () => {
 
   describe('Auth', function () {
     const dto: AuthDto = {
-      email: 'hiro_tests@gmail.com',
-      password: 'testing@rQfAPjfVsreWGz2',
+      wallet: 'AEESTENRTENSRT@1231',
     }
     describe('Sign up', () => {
-      it('should signup', () => {
+      it('should signin', () => {
         return pactum
           .spec()
-          .post(`${url}/auth/signup`)
+          .post(`${url}/auth/signin`)
           .withBody(dto)
           .withRequestTimeout(2 * 1000) //cold start
           .expectStatus(HttpStatus.CREATED)
           .inspect()
       })
 
-      it('should throw if email empty', () => {
-        return pactum
-          .spec()
-          .post('/auth/signup')
-          .withBody({
-            password: dto.password,
-          })
-          .expectStatus(400)
-          .inspect()
+      it('should throw if wallet empty', () => {
+        return pactum.spec().post('/auth/signin').withBody({}).expectStatus(400).inspect()
       })
 
       it('should throw if password empty', () => {
         return pactum
           .spec()
-          .post('/auth/signup')
+          .post('/auth/signin')
           .withBody({
             email: dto.email,
           })
@@ -106,7 +98,7 @@ describe('App e2e', () => {
       it('should throw if not strang  password', () => {
         return pactum
           .spec()
-          .post('/auth/signup')
+          .post('/auth/signin')
           .withBody({
             email: dto.email,
             password: '123',

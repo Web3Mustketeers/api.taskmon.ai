@@ -1,22 +1,19 @@
-# Schedule sessions with dean 
+# Schedule sessions with dean
 
 # Inspiration
 
-During my college years, I found that teachers, students & myself would often have to stand outside the
-dean's office for long hours. I found this very disturbing as a Computer Science Engineering Student. I saw the potential of 
-a software scheduler that would make everyone's life easy.
-
+During my college years, I found that teachers, students & myself would often have to
+stand outside the dean's office for long hours. I found this very disturbing as a Computer
+Science Engineering Student. I saw the potential of a software scheduler that would make
+everyone's life easy.
 
 # Repo
-
 
 Built with ❤️on
 
 - nestjs
-- prisma 
+- prisma
 - passportjs
-
-
 
 ## Installation
 

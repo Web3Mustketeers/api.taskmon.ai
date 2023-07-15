@@ -7,8 +7,6 @@ import { Response } from 'express'
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-
-
   @HttpCode(HttpStatus.OK)
   @Post('signin')
   async signin(@Body() dto: AuthDto, @Res() res: Response) {
