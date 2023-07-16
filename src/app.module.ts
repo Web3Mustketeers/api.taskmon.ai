@@ -1,16 +1,15 @@
-import { Module } from "@nestjs/common";
-import { AppService } from "./app.service";
-import { ConfigModule } from "@nestjs/config";
-import { AuthModule } from "./auth/auth.module";
-import * as Joi from "joi";
-import { CacheModule } from "@nestjs/cache-manager";
-import { GraphQLModule } from "@nestjs/graphql";
-import {
-  ApolloServerPluginLandingPageGraphQLPlayground
-} from "@apollo/server-plugin-landing-page-graphql-playground";
-import { GraphQLDateTime } from "graphql-iso-date";
-import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { BoardModule } from "./board/board.module";
+import { Module } from '@nestjs/common'
+import { AppService } from './app.service'
+import { ConfigModule } from '@nestjs/config'
+import { AuthModule } from './auth/auth.module'
+import * as Joi from 'joi'
+import { CacheModule } from '@nestjs/cache-manager'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
+import { GraphQLDateTime } from 'graphql-iso-date'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { BoardModule } from './board/board.module'
+import { AppController } from './app.controller'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -50,14 +49,16 @@ switch (mode) {
       driver: ApolloDriver,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
       typePaths: ['./**/*.graphql'],
-      r"./**/*.graphql"Time: GraphQLDateTime },
+      resolvers: { DateTime: GraphQLDateTime },
       subscriptions: {
         'graphql-ws': true,
-      "graphql-ws"ions-transport-w"subscriptions-transport-ws"   PrimaModule
+        'subscriptions-transport-ws': true,
+      },
+    }),
     AuthModule,
     BoardModule,
   ],
-  controllers: [Appontroller],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModul {}
