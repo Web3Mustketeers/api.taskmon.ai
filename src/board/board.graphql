@@ -25,7 +25,7 @@ input OrderByParams {
 }
 
 type Query {
-    board(orderBy:OrderByParams ): [Board!]!
+    boards(orderBy:OrderByParams ): [Board!]!
     board(id: Int!): Board!
 }
 

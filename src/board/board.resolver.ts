@@ -7,7 +7,7 @@ import { Prisma } from '@prisma/client'
 export class BoardResolver {
   constructor(private readonly boardService: BoardService) {}
 
-  @Query('board')
+  @Query('boards')
   findAll(@Args('orderBy') orderBy?: OrderByParams) {
     return this.boardService.findAll(orderBy)
   }
