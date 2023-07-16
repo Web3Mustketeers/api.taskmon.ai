@@ -1,12 +1,9 @@
 import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
-import { PrismaModule } from "./prisma/prisma.module";
 import * as Joi from "joi";
 import { CacheModule } from "@nestjs/cache-manager";
-import { TaskModule } from "./task/task.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import {
   ApolloServerPluginLandingPageGraphQLPlayground
@@ -15,15 +12,15 @@ import { GraphQLDateTime } from "graphql-iso-date";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { BoardModule } from "./board/board.module";
 
-let mode = process.env.MODE;
-let envFile = ".env";
+let mode = process.env.MODE
+let envFile = '.env'
 
 switch (mode) {
-  case "test":
-    envFile = ".env.test";
-    process.env.NODE_ENV = "testing";
-    break;
-  case "prod":
+  case 'test':
+    envFile = '.env.test'
+    process.env.NODE_ENV = 'testing'
+    break
+  case 'prod':
     process.env.NODE_ENV = 'production'
     envFile = '.env.prod'
     break
@@ -52,19 +49,15 @@ switch (mode) {
       playground: false,
       driver: ApolloDriver,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-      typePaths: ['."./**/*.graphql"
-      resolvers: { DateTime: GraphQLDateTime },
+      typePaths: ['./**/*.graphql'],
+      r"./**/*.graphql"Time: GraphQLDateTime },
       subscriptions: {
-        'g"graphql-ws"true,
-        's"subscriptions-transport-ws"true,
-     },
-   }),
-    PrismaModule,
+        'graphql-ws': true,
+      "graphql-ws"ions-transport-w"subscriptions-transport-ws"   PrimaModule
     AuthModule,
-    TaskModule,
     BoardModule,
- ],
-  controllers: [AppController],
+  ],
+  controllers: [Appontroller],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModul {}
