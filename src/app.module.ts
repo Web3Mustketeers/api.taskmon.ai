@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './auth/auth.module'
-import { PrismaModule } from './prisma/prisma.module'
 import * as Joi from 'joi'
 import { CacheModule } from '@nestjs/cache-manager'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
+import { GraphQLDateTime } from 'graphql-iso-date'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { BoardModule } from './board/board.module'
+import { AppController } from './app.controller'
+import { ColumnModule } from './column/column.module'
+import { TaskModule } from './task/task.module'
+import { SubtaskModule } from './subtask/subtask.module'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -40,8 +47,22 @@ switch (mode) {
       }),
     }),
     CacheModule.register({ isGlobal: true }),
-    PrismaModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      playground: false,
+      driver: ApolloDriver,
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+      typePaths: ['./**/*.graphql'],
+      resolvers: { DateTime: GraphQLDateTime },
+      subscriptions: {
+        'graphql-ws': true,
+        'subscriptions-transport-ws': true,
+      },
+    }),
     AuthModule,
+    BoardModule,
+    ColumnModule,
+    TaskModule,
+    SubtaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
