@@ -9,12 +9,16 @@ type Board {
     updatedAt: DateTime
 }
 
-input BoardInput {
+input CreateBoardInput {
     name: String!
     isActive: Boolean
     walletId: Int!
 }
 
+    id: Int!
+    name: String!
+    isActive: Boolean
+}
 input OrderByParams {
     field: String
     direction: String
@@ -26,7 +30,9 @@ type Query {
 }
 
 type Mutation {
-    createBoard(data: BoardInput!): Board!
-    updateBoard(id: Int!, data: BoardInput!): Board!
+    createBoard(data: CreateBoardInput!): Board!
+    updateBoard(id: Int!, data: UpdateBoardInput!): Board!
     deleteBoard(id: Int!): Board!
 }
+
+

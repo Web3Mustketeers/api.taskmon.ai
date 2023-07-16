@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import { UpdateBoardInput } from './dto/update-board.input'
 import { PrismaService } from '../prisma/prisma.service'
 
 import { Prisma } from '@prisma/client'
@@ -29,7 +28,7 @@ export class BoardService {
     })
   }
 
-  update(id: number, updateBoardInput: UpdateBoardInput) {
+  update(id: number, updateBoardInput: Prisma.BoardUpdateInput) {
     return this.prisma.board.update({
       where: {
         id,

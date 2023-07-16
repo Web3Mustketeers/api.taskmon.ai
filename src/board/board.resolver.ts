@@ -1,6 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { BoardService } from './board.service'
-import { UpdateBoardInput } from './dto/update-board.input'
 import { OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 
@@ -8,14 +7,9 @@ import { Prisma } from '@prisma/client'
 export class BoardResolver {
   constructor(private readonly boardService: BoardService) {}
 
-  @Mutation('createBoard')
-  create(@Args('createBoardInput') createBoardInput: Prisma.BoardCreateInput) {
-    return this.boardService.create(createBoardInput)
-  }
-
   @Query('boards')
   findAll(@Args('orderBy') orderBy: OrderByParams) {
-    return this.boardService.findAll()
+    return this.boardService.findAll(orderBy)
   }
 
   @Query('board')
@@ -23,9 +17,17 @@ export class BoardResolver {
     return this.boardService.findOne({ id })
   }
 
+  @Mutation('createBoard')
+  create(@Args('data') createBoardInput: Prisma.BoardCreateInput) {
+    console.debug({ createBoardInput })
+    return this.boardService.create(createBoardInput)
+  }
   @Mutation('updateBoard')
-  update(@Args('updateBoardInput') updateBoardInput: UpdateBoardInput) {
-    return this.boardService.update(updateBoardInput.id, updateBoardInput)
+  update(
+    @Args('id') id: number,
+    @Args('data') updateBoardInput: Prisma.BoardUpdateInput,
+  ) {
+    return this.boardService.update(id, updateBoardInput)
   }
 
   @Mutation('deleteBoard')

@@ -8,10 +8,16 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export class BoardInput {
+export class CreateBoardInput {
     name: string;
     isActive?: Nullable<boolean>;
     walletId: number;
+}
+
+export class UpdateBoardInput {
+    id: number;
+    name: string;
+    isActive?: Nullable<boolean>;
 }
 
 export class OrderByParams {
@@ -25,7 +31,7 @@ export class Board {
     isActive: boolean;
     walletId: number;
     createdAt: DateTime;
-    updatedAt: DateTime;
+    updatedAt?: Nullable<DateTime>;
 }
 
 export abstract class IQuery {
@@ -35,9 +41,9 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createBoard(data: BoardInput): Board | Promise<Board>;
+    abstract createBoard(data: CreateBoardInput): Board | Promise<Board>;
 
-    abstract updateBoard(id: number, data: BoardInput): Board | Promise<Board>;
+    abstract updateBoard(id: number, data: UpdateBoardInput): Board | Promise<Board>;
 
     abstract deleteBoard(id: number): Board | Promise<Board>;
 }
