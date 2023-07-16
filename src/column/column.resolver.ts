@@ -12,7 +12,7 @@ export class ColumnResolver {
     return this.columnService.create(createColumnInput)
   }
 
-  @Query('column')
+  @Query('columns')
   findAll() {
     return this.columnService.findAll()
   }
