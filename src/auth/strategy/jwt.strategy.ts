@@ -9,7 +9,7 @@ import { Request as RequestType } from 'express'
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   private jwtConstants: any
 
-  constructor(private config: ConfigService, private prisma: PrismaService) {
+  constructor(private config: ConfigService, private readonly prisma: PrismaService) {
     const mode = config.get('MODE') || 'dev'
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([

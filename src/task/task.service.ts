@@ -5,7 +5,7 @@ import { OrderByParams } from '../graphql'
 
 @Injectable()
 export class TaskService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createTaskInput: Prisma.TaskCreateInput) {
     return this.prisma.task.create({

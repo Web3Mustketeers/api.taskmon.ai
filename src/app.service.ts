@@ -11,7 +11,7 @@ class ServiceStatus {
 
 @Injectable()
 export class AppService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
   getHello() {
     return { message: 'app is up and running' }
   }

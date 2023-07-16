@@ -6,7 +6,7 @@ import { OrderByParams } from '../graphql'
 
 @Injectable()
 export class BoardService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
   create(createBoardInput: Prisma.BoardCreateInput) {
     return this.prisma.board.create({
       data: createBoardInput,

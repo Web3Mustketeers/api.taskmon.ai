@@ -6,7 +6,7 @@ import { CreateSubTaskInput } from './dto/create-subtask.input'
 
 @Injectable()
 export class SubtaskService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   create(createSubTaskInput: CreateSubTaskInput) {
     return this.prisma.subtask.create({

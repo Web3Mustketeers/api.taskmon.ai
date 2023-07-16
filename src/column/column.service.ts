@@ -5,7 +5,7 @@ import { OrderByParams } from '../graphql'
 
 @Injectable()
 export class ColumnService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
   create(createColumnInput: Prisma.ColumnCreateInput) {
     return this.prisma.column.create({
       data: createColumnInput,
