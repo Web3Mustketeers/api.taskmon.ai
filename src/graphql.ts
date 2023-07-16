@@ -67,6 +67,7 @@ export class Board {
     walletId: number;
     createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
+    columns?: Nullable<Nullable<Column>[]>;
 }
 
 export abstract class IQuery {
