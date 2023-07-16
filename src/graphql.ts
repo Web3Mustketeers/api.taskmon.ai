@@ -24,6 +24,8 @@ export class Board {
     name: string;
     isActive: boolean;
     walletId: number;
+    createdAt: DateTime;
+    updatedAt: DateTime;
 }
 
 export abstract class IQuery {
@@ -40,4 +42,5 @@ export abstract class IMutation {
     abstract deleteBoard(id: number): Board | Promise<Board>;
 }
 
+export type DateTime = any;
 type Nullable<T> = T | null;

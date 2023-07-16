@@ -28,7 +28,7 @@ export class BoardResolver {
     return this.boardService.update(updateBoardInput.id, updateBoardInput)
   }
 
-  @Mutation('removeBoard')
+  @Mutation('deleteBoard')
   remove(@Args('id') id: number) {
     return this.boardService.remove(id)
   }

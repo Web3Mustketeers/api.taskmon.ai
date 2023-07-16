@@ -1,8 +1,12 @@
+scalar DateTime
+
 type Board {
     id: Int!
     name: String!
     isActive: Boolean!
     walletId: Int!
+    createdAt: DateTime!
+    updatedAt: DateTime
 }
 
 input BoardInput {
