@@ -41,6 +41,9 @@ model Board {
 
   columns Column[] // One-to-many relationship with Column model
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("boards")
 }
 
@@ -53,6 +56,9 @@ model Column {
   board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
 
   tasks Task[] // One-to-many relationship with Task model
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("columns")
 }
@@ -69,6 +75,9 @@ model Task {
 
   Subtask Subtask[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("tasks")
 }
 
@@ -79,6 +88,9 @@ model Subtask {
   isCompleted Boolean @default(false)
   taskId      Int
   task        Task    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("subtasks")
 }
