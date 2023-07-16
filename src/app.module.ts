@@ -61,4 +61,4 @@ switch (mode) {
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModul {}
+export class AppModule {}
