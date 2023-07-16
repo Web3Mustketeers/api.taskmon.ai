@@ -12,6 +12,7 @@ input CreateColumnInput {
 }
 
 input UpdateColumnInput {
+  id: Int!
   name: String!
 }
 

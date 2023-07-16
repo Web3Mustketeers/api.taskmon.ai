@@ -1,6 +1,3 @@
-import { CreateColumnInput } from './create-column.input'
-import { PartialType } from '@nestjs/mapped-types'
+import { Prisma } from '@prisma/client'
 
-export class UpdateColumnInput extends PartialType(CreateColumnInput) {
-  id: number
-}
+export type UpdateColumnInput = Prisma.ColumnUpdateInput
