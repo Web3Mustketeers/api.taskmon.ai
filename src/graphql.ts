@@ -34,6 +34,19 @@ export class UpdateColumnInput {
     name: string;
 }
 
+export class CreateTaskInput {
+    title: string;
+    columnId: number;
+    description?: Nullable<string>;
+}
+
+export class UpdateTaskInput {
+    id: number;
+    title?: Nullable<string>;
+    columnId?: Nullable<number>;
+    description?: Nullable<string>;
+}
+
 export class Board {
     id: number;
     name: string;
@@ -51,6 +64,10 @@ export abstract class IQuery {
     abstract columns(): Nullable<Column>[] | Promise<Nullable<Column>[]>;
 
     abstract column(id: number): Nullable<Column> | Promise<Nullable<Column>>;
+
+    abstract tasks(): Nullable<Task>[] | Promise<Nullable<Task>[]>;
+
+    abstract task(id: number): Nullable<Task> | Promise<Nullable<Task>>;
 }
 
 export abstract class IMutation {
@@ -65,12 +82,27 @@ export abstract class IMutation {
     abstract updateColumn(updateColumnInput: UpdateColumnInput): Column | Promise<Column>;
 
     abstract removeColumn(id: number): Nullable<Column> | Promise<Nullable<Column>>;
+
+    abstract createTask(createTaskInput: CreateTaskInput): Task | Promise<Task>;
+
+    abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise<Task>;
+
+    abstract removeTask(id: number): Nullable<Task> | Promise<Nullable<Task>>;
 }
 
 export class Column {
     id: number;
     name: string;
     boardId: number;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+}
+
+export class Task {
+    id: number;
+    title: string;
+    description?: Nullable<string>;
+    columnId: number;
     createdAt?: Nullable<DateTime>;
     updatedAt?: Nullable<DateTime>;
 }
