@@ -34,6 +34,19 @@ export class UpdateColumnInput {
     name: string;
 }
 
+export class CreateSubTaskInput {
+    title: string;
+    taskId: number;
+    isCompleted?: Nullable<boolean>;
+}
+
+export class UpdateSubTaskInput {
+    id: number;
+    title?: Nullable<string>;
+    taskId?: Nullable<number>;
+    isCompleted?: Nullable<boolean>;
+}
+
 export class CreateTaskInput {
     title: string;
     columnId: number;
@@ -52,7 +65,7 @@ export class Board {
     name: string;
     isActive: boolean;
     walletId: number;
-    createdAt?: Nullable<DateTime>;
+    createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
 }
 
@@ -64,6 +77,10 @@ export abstract class IQuery {
     abstract columns(): Nullable<Column>[] | Promise<Nullable<Column>[]>;
 
     abstract column(id: number): Nullable<Column> | Promise<Nullable<Column>>;
+
+    abstract subtasks(): Nullable<SubTask>[] | Promise<Nullable<SubTask>[]>;
+
+    abstract subtask(id: number): Nullable<SubTask> | Promise<Nullable<SubTask>>;
 
     abstract tasks(): Nullable<Task>[] | Promise<Nullable<Task>[]>;
 
@@ -83,6 +100,12 @@ export abstract class IMutation {
 
     abstract removeColumn(id: number): Nullable<Column> | Promise<Nullable<Column>>;
 
+    abstract createSubTask(createSubTaskInput: CreateSubTaskInput): SubTask | Promise<SubTask>;
+
+    abstract updateSubTask(updateSubTaskInput: UpdateSubTaskInput): SubTask | Promise<SubTask>;
+
+    abstract removeSubTask(id: number): Nullable<SubTask> | Promise<Nullable<SubTask>>;
+
     abstract createTask(createTaskInput: CreateTaskInput): Task | Promise<Task>;
 
     abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise<Task>;
@@ -94,7 +117,16 @@ export class Column {
     id: number;
     name: string;
     boardId: number;
-    createdAt?: Nullable<DateTime>;
+    createdAt: DateTime;
+    updatedAt?: Nullable<DateTime>;
+}
+
+export class SubTask {
+    id: number;
+    title: string;
+    taskId: number;
+    isCompleted?: Nullable<boolean>;
+    createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
 }
 
@@ -103,7 +135,7 @@ export class Task {
     title: string;
     description?: Nullable<string>;
     columnId: number;
-    createdAt?: Nullable<DateTime>;
+    createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
 }
 
