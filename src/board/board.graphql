@@ -7,13 +7,13 @@ type Board {
 
 input BoardInput {
     name: String!
-    isActive: Boolean!
+    isActive: Boolean
     walletId: Int!
 }
 
 type Query {
-    getAllBoards: [Board!]!
-    getBoardById(id: Int!): Board!
+    boards: [Board!]!
+    board(id: Int!): Board!
 }
 
 type Mutation {
