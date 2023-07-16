@@ -1,7 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { ColumnService } from './column.service'
 import { CreateColumnInput } from './dto/create-column.input'
-import { UpdateColumnInput } from './dto/update-column.input'
 
 @Resolver('Column')
 export class ColumnResolver {
@@ -23,8 +22,8 @@ export class ColumnResolver {
   }
 
   @Mutation('updateColumn')
-  update(@Args('updateColumnInput') updateColumnInput: UpdateColumnInput) {
-    return this.columnService.update(updateColumnInput.id, updateColumnInput)
+  update(@Args('updateColumnInput') updateColumnInput: object) {
+    return this.columnService.update(updateColumnInput['id'], updateColumnInput)
   }
 
   @Mutation('removeColumn')
