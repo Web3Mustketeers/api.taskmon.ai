@@ -39,7 +39,7 @@ export class TaskResolver {
   }
 
   @ResolveField('subtasks')
-  async subtasks(@Parent() task: Task): Promise<Subtask[]> {
+  subtasks(@Parent() task: Task): Promise<Subtask[]> {
     return this.subtaskService.findAll(null, { taskId: task.id })
   }
 }

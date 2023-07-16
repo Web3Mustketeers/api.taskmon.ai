@@ -7,6 +7,8 @@ type Board {
     walletId: Int!
     createdAt: DateTime!
     updatedAt: DateTime
+
+    columns: [Column]
 }
 
 input CreateBoardInput {
@@ -34,5 +36,4 @@ type Mutation {
     updateBoard(id: Int!, data: UpdateBoardInput!): Board!
     deleteBoard(id: Int!): Board!
 }
-
 

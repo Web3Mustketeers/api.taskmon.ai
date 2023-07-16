@@ -4,7 +4,7 @@ import { Prisma } from '@prisma/client'
 import { OrderByParams } from '../graphql'
 
 interface FilterBy {
-  id?: number
+  boardId?: number
 }
 @Injectable()
 export class ColumnService {
