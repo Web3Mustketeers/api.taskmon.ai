@@ -11,6 +11,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { BoardModule } from './board/board.module'
 import { AppController } from './app.controller'
 import { ColumnModule } from './column/column.module'
+import { TaskModule } from './task/task.module'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -59,6 +60,7 @@ switch (mode) {
     AuthModule,
     BoardModule,
     ColumnModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
