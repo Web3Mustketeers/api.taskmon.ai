@@ -1,0 +1,23 @@
+type Board {
+    id: Int!
+    name: String!
+    isActive: Boolean!
+    walletId: Int!
+}
+
+input BoardInput {
+    name: String!
+    isActive: Boolean!
+    walletId: Int!
+}
+
+type Query {
+    getAllBoards: [Board!]!
+    getBoardById(id: Int!): Board!
+}
+
+type Mutation {
+    createBoard(data: BoardInput!): Board!
+    updateBoard(id: Int!, data: BoardInput!): Board!
+    deleteBoard(id: Int!): Board!
+}

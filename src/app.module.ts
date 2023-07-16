@@ -1,16 +1,19 @@
-import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { ConfigModule } from '@nestjs/config'
-import { AuthModule } from './auth/auth.module'
-import { PrismaModule } from './prisma/prisma.module'
-import * as Joi from 'joi'
-import { CacheModule } from '@nestjs/cache-manager'
-import { TaskModule } from './task/task.module'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
-import { GraphQLDateTime } from 'graphql-iso-date'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ConfigModule } from "@nestjs/config";
+import { AuthModule } from "./auth/auth.module";
+import { PrismaModule } from "./prisma/prisma.module";
+import * as Joi from "joi";
+import { CacheModule } from "@nestjs/cache-manager";
+import { TaskModule } from "./task/task.module";
+import { GraphQLModule } from "@nestjs/graphql";
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground
+} from "@apollo/server-plugin-landing-page-graphql-playground";
+import { GraphQLDateTime } from "graphql-iso-date";
+import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
+import { BoardModule } from "./board/board.module";
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -49,17 +52,18 @@ switch (mode) {
       playground: false,
       driver: ApolloDriver,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
-      typePaths: ['./**/*.graphql'],
+      typePaths: ['."./**/*.graphql"
       resolvers: { DateTime: GraphQLDateTime },
       subscriptions: {
-        'graphql-ws': true,
-        'subscriptions-transport-ws': true,
-      },
-    }),
+        'g"graphql-ws"true,
+        's"subscriptions-transport-ws"true,
+     },
+   }),
     PrismaModule,
     AuthModule,
     TaskModule,
-  ],
+    BoardModule,
+ ],
   controllers: [AppController],
   providers: [AppService],
 })
