@@ -7,6 +7,8 @@ type Task {
   columnId: Int!
   createdAt: DateTime!
   updatedAt: DateTime
+
+  subtasks: [SubTask]
 }
 
 input CreateTaskInput {
@@ -25,6 +27,7 @@ input UpdateTaskInput {
 type Query {
   tasks: [Task]!
   task(id: Int!): Task
+
 }
 
 type Mutation {

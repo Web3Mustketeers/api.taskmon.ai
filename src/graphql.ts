@@ -137,6 +137,7 @@ export class Task {
     columnId: number;
     createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
+    subtasks?: Nullable<Nullable<SubTask>[]>;
 }
 
 export type DateTime = any;

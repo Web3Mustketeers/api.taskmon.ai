@@ -1,10 +1,16 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { TaskService } from './task.service'
 import { CreateTaskInput } from './dto/create-task.input'
+import { Task } from '../graphql'
+import { Subtask } from '../@generated/prisma-nestjs-graphql/subtask/subtask.model'
+import { SubtaskService } from '../subtask/subtask.service'
 
 @Resolver('Task')
 export class TaskResolver {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(
+    private readonly taskService: TaskService,
+    private readonly subtaskService: SubtaskService,
+  ) {}
 
   @Mutation('createTask')
   create(@Args('createTaskInput') createTaskInput: CreateTaskInput) {
@@ -30,5 +36,10 @@ export class TaskResolver {
   @Mutation('removeTask')
   remove(@Args('id') id: number) {
     return this.taskService.remove(id)
+  }
+
+  @ResolveField('subtasks')
+  async subtasks(@Parent() task: Task): Promise<Subtask[]> {
+    return this.subtaskService.findAll(null, { taskId: task.id })
   }
 }
