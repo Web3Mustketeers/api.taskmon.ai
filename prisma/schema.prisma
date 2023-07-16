@@ -22,6 +22,9 @@ model Wallet {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  /// @Validator.MinLength(32)
+  /// @Validator.MaxLength(44)
+  /// @ValidatorIsAlphanumeric()
   address String  @unique
   Board   Board[]
 
@@ -30,6 +33,7 @@ model Wallet {
 
 model Board {
   id       Int     @id @default(sequence(minValue: 1)) @db.Int4
+  /// @Validator.MinLength(3)
   name     String
   isActive Boolean
   walletId Int
@@ -42,6 +46,8 @@ model Board {
 
 model Column {
   id      Int    @id @default(sequence(minValue: 1)) @db.Int4
+  /// @Validator.MinLength(3)
+  /// @Validator.MaxLength(10)
   name    String
   boardId Int
   board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
@@ -53,6 +59,7 @@ model Column {
 
 model Task {
   id          Int     @id @default(sequence(minValue: 1)) @db.Int4
+  /// @Validator.MinLength(3)
   title       String
   description String?
   // status      String //is Same as columnId
@@ -67,6 +74,7 @@ model Task {
 
 model Subtask {
   id          Int     @id @default(sequence(minValue: 1)) @db.Int4
+  /// @Validator.MinLength(3)
   title       String
   isCompleted Boolean @default(false)
   taskId      Int
