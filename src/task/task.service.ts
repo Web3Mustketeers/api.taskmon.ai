@@ -3,6 +3,9 @@ import { PrismaService } from '../prisma/prisma.service'
 import { Prisma } from '@prisma/client'
 import { OrderByParams } from '../graphql'
 
+interface FilterBy {
+  columnId: number
+}
 @Injectable()
 export class TaskService {
   constructor(private readonly prisma: PrismaService) {}
@@ -13,12 +16,13 @@ export class TaskService {
     })
   }
 
-  findAll(orderBy?: OrderByParams) {
+  findAll(orderBy?: OrderByParams, whereBy?: FilterBy) {
     const { field, direction } = orderBy || {}
     return this.prisma.task.findMany({
       orderBy: {
         [field]: direction,
       },
+      where: whereBy,
     })
   }
 

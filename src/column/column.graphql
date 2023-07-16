@@ -6,6 +6,8 @@ type Column {
   boardId: Int!
   createdAt: DateTime!
   updatedAt: DateTime
+
+  tasks: [Task]
 }
 
 input CreateColumnInput {

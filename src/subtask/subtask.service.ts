@@ -4,8 +4,8 @@ import { Prisma } from '@prisma/client'
 import { OrderByParams } from '../graphql'
 import { CreateSubTaskInput } from './dto/create-subtask.input'
 
-interface SubtaskFilterBy {
-  taskId: number
+interface FilterBy {
+  taskId?: number
 }
 
 @Injectable()
@@ -18,7 +18,7 @@ export class SubtaskService {
     })
   }
 
-  findAll(orderBy?: OrderByParams, whereBy?: SubtaskFilterBy) {
+  findAll(orderBy?: OrderByParams, whereBy?: FilterBy) {
     const { field, direction } = orderBy || {}
     return this.prisma.subtask.findMany({
       orderBy: {

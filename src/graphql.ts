@@ -119,6 +119,7 @@ export class Column {
     boardId: number;
     createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
+    tasks?: Nullable<Nullable<Task>[]>;
 }
 
 export class SubTask {

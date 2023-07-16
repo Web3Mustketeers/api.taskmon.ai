@@ -3,6 +3,9 @@ import { PrismaService } from '../prisma/prisma.service'
 import { Prisma } from '@prisma/client'
 import { OrderByParams } from '../graphql'
 
+interface FilterBy {
+  id?: number
+}
 @Injectable()
 export class ColumnService {
   constructor(private readonly prisma: PrismaService) {}
@@ -12,12 +15,13 @@ export class ColumnService {
     })
   }
 
-  findAll(orderBy?: OrderByParams) {
+  findAll(orderBy?: OrderByParams, whereBy?: FilterBy) {
     const { field, direction } = orderBy || {}
     return this.prisma.column.findMany({
       orderBy: {
         [field]: direction,
       },
+      where: whereBy,
     })
   }
 
