@@ -24,12 +24,22 @@ export class OrderByParams {
     direction?: Nullable<string>;
 }
 
+export class CreateColumnInput {
+    name: string;
+    boardId: number;
+}
+
+export class UpdateColumnInput {
+    id: number;
+    name: string;
+}
+
 export class Board {
     id: number;
     name: string;
     isActive: boolean;
     walletId: number;
-    createdAt: DateTime;
+    createdAt?: Nullable<DateTime>;
     updatedAt?: Nullable<DateTime>;
 }
 
@@ -37,6 +47,10 @@ export abstract class IQuery {
     abstract boards(orderBy?: Nullable<OrderByParams>): Board[] | Promise<Board[]>;
 
     abstract board(id: number): Board | Promise<Board>;
+
+    abstract columns(): Nullable<Column>[] | Promise<Nullable<Column>[]>;
+
+    abstract column(id: number): Nullable<Column> | Promise<Nullable<Column>>;
 }
 
 export abstract class IMutation {
@@ -45,6 +59,20 @@ export abstract class IMutation {
     abstract updateBoard(id: number, data: UpdateBoardInput): Board | Promise<Board>;
 
     abstract deleteBoard(id: number): Board | Promise<Board>;
+
+    abstract createColumn(createColumnInput: CreateColumnInput): Column | Promise<Column>;
+
+    abstract updateColumn(updateColumnInput: UpdateColumnInput): Column | Promise<Column>;
+
+    abstract removeColumn(id: number): Nullable<Column> | Promise<Nullable<Column>>;
+}
+
+export class Column {
+    id: number;
+    name: string;
+    boardId: number;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
 }
 
 export type DateTime = any;

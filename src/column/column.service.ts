@@ -1,26 +1,46 @@
 import { Injectable } from '@nestjs/common'
-import { CreateColumnInput } from './dto/create-column.input'
-import { UpdateColumnInput } from './dto/update-column.input'
+import { PrismaService } from '../prisma/prisma.service'
+import { Prisma } from '@prisma/client'
+import { OrderByParams } from '../graphql'
 
 @Injectable()
 export class ColumnService {
-  create(createColumnInput: CreateColumnInput) {
-    return 'This action adds a new column'
+  constructor(private prisma: PrismaService) {}
+  create(createColumnInput: Prisma.ColumnCreateInput) {
+    return this.prisma.column.create({
+      data: createColumnInput,
+    })
   }
 
-  findAll() {
-    return `This action returns all column`
+  findAll(orderBy?: OrderByParams) {
+    const { field, direction } = orderBy || {}
+    return this.prisma.column.findMany({
+      orderBy: {
+        [field]: direction,
+      },
+    })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} column`
+  findOne(uniqueKey: Prisma.ColumnWhereUniqueInput) {
+    return this.prisma.column.findUnique({
+      where: uniqueKey,
+    })
   }
 
-  update(id: number, updateColumnInput: UpdateColumnInput) {
-    return `This action updates a #${id} column`
+  update(id: number, updateColumnInput: Prisma.ColumnUpdateInput) {
+    return this.prisma.column.update({
+      where: {
+        id,
+      },
+      data: updateColumnInput,
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} column`
+    return this.prisma.column.delete({
+      where: {
+        id,
+      },
+    })
   }
 }

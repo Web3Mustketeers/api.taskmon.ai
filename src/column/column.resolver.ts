@@ -19,7 +19,7 @@ export class ColumnResolver {
 
   @Query('column')
   findOne(@Args('id') id: number) {
-    return this.columnService.findOne(id)
+    return this.columnService.findOne({ id })
   }
 
   @Mutation('updateColumn')
