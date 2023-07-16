@@ -1,3 +1,5 @@
-import { Prisma } from '@prisma/client'
+import { ColumnUpdateInput } from '../../@generated/prisma-nestjs-graphql/column/column-update.input'
 
-export type UpdateColumnInput = Prisma.ColumnUpdateInput
+export class UpdateColumnInput extends ColumnUpdateInput {
+  id: number
+}
