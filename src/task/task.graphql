@@ -5,7 +5,7 @@ type Task {
   title: String!
   description: String
   columnId: Int!
-  createdAt: DateTime
+  createdAt: DateTime!
   updatedAt: DateTime
 }
 

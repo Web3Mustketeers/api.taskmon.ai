@@ -5,7 +5,7 @@ type Board {
     name: String!
     isActive: Boolean!
     walletId: Int!
-    createdAt: DateTime
+    createdAt: DateTime!
     updatedAt: DateTime
 }
 

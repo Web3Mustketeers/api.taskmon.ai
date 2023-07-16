@@ -4,7 +4,7 @@ type Column {
   id: Int!
   name: String!
   boardId: Int!
-  createdAt: DateTime
+  createdAt: DateTime!
   updatedAt: DateTime
 }
 
