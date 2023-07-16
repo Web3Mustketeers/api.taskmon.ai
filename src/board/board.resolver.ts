@@ -1,14 +1,15 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { BoardService } from './board.service'
-import { CreateBoardInput } from './dto/create-board.input'
 import { UpdateBoardInput } from './dto/update-board.input'
+import { OrderByParams } from '../graphql'
+import { Prisma } from '@prisma/client'
 
 @Resolver('Board')
 export class BoardResolver {
   constructor(private readonly boardService: BoardService) {}
 
   @Mutation('createBoard')
-  create(@Args('createBoardInput') createBoardInput: CreateBoardInput) {
+  create(@Args('createBoardInput') createBoardInput: Prisma.BoardCreateInput) {
     return this.boardService.create(createBoardInput)
   }
 
