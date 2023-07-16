@@ -15,7 +15,7 @@ input CreateBoardInput {
     walletId: Int!
 }
 
-    id: Int!
+input UpdateBoardInput{
     name: String!
     isActive: Boolean
 }

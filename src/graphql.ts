@@ -15,7 +15,6 @@ export class CreateBoardInput {
 }
 
 export class UpdateBoardInput {
-    id: number;
     name: string;
     isActive?: Nullable<boolean>;
 }

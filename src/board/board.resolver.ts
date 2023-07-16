@@ -8,7 +8,7 @@ export class BoardResolver {
   constructor(private readonly boardService: BoardService) {}
 
   @Query('boards')
-  findAll(@Args('orderBy') orderBy: OrderByParams) {
+  findAll(@Args('orderBy') orderBy?: OrderByParams) {
     return this.boardService.findAll(orderBy)
   }
 
