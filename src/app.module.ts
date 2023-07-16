@@ -10,6 +10,7 @@ import { GraphQLDateTime } from 'graphql-iso-date'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { BoardModule } from './board/board.module'
 import { AppController } from './app.controller'
+import { ColumnModule } from './column/column.module'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -57,6 +58,7 @@ switch (mode) {
     }),
     AuthModule,
     BoardModule,
+    ColumnModule,
   ],
   controllers: [AppController],
   providers: [AppService],

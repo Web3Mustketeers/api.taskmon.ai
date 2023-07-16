@@ -1,0 +1,27 @@
+type Column {
+  id: Int!
+  name: String!
+  boardId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input CreateColumnInput {
+ name: String!
+  boardId: Int!
+}
+
+input UpdateColumnInput {
+  name: String!
+}
+
+type Query {
+  column: [Column]!
+  column(id: Int!): Column
+}
+
+type Mutation {
+  createColumn(createColumnInput: CreateColumnInput!): Column!
+  updateColumn(updateColumnInput: UpdateColumnInput!): Column!
+  removeColumn(id: Int!): Column
+}
