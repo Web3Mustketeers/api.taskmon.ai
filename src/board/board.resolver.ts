@@ -13,7 +13,7 @@ export class BoardResolver {
   }
 
   @Query('boards')
-  findAll() {
+  findAll(@Args('orderBy') orderBy: OrderByParams) {
     return this.boardService.findAll()
   }
 

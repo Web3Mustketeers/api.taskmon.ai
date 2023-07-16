@@ -11,8 +11,13 @@ input BoardInput {
     walletId: Int!
 }
 
+input OrderByParams {
+    field: String
+    direction: String
+}
+
 type Query {
-    boards: [Board!]!
+    boards(orderBy:OrderByParams ): [Board!]!
     board(id: Int!): Board!
 }
 
