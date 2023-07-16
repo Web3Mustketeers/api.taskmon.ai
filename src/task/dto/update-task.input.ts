@@ -1,6 +1,5 @@
-import { CreateTaskInput } from './create-task.input'
-import { PartialType } from '@nestjs/mapped-types'
+import { TaskUpdateInput } from '../../@generated/prisma-nestjs-graphql/task/task-update.input'
 
-export class UpdateTaskInput extends PartialType(CreateTaskInput) {
+export class UpdateTaskInput extends TaskUpdateInput {
   id: number
 }

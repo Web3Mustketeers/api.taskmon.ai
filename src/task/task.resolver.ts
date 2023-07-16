@@ -12,14 +12,14 @@ export class TaskResolver {
     return this.taskService.create(createTaskInput)
   }
 
-  @Query('task')
+  @Query('tasks')
   findAll() {
     return this.taskService.findAll()
   }
 
   @Query('task')
   findOne(@Args('id') id: number) {
-    return this.taskService.findOne(id)
+    return this.taskService.findOne({ id })
   }
 
   @Mutation('updateTask')

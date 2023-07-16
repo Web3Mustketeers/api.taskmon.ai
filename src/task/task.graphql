@@ -1,19 +1,32 @@
+scalar DateTime
+
 type Task {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  name: String!
+  title: String!
+  description: String
+  columnId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input CreateTaskInput {
-  # Example field (placeholder)
-  exampleField: Int
+  name: String!
+  title: String!
+  columnId: Int!
+  description: String
 }
 
 input UpdateTaskInput {
   id: Int!
+  name: String
+  title: String
+  columnId: Int
+  description: String
 }
 
 type Query {
-  task: [Task]!
+  tasks: [Task]!
   task(id: Int!): Task
 }
 

@@ -1,26 +1,47 @@
 import { Injectable } from '@nestjs/common'
-import { CreateTaskInput } from './dto/create-task.input'
-import { UpdateTaskInput } from './dto/update-task.input'
+import { PrismaService } from '../prisma/prisma.service'
+import { Prisma } from '@prisma/client'
+import { OrderByParams } from '../graphql'
 
 @Injectable()
 export class TaskService {
-  create(createTaskInput: CreateTaskInput) {
-    return 'This action adds a new task'
+  constructor(private prisma: PrismaService) {}
+
+  create(createTaskInput: Prisma.TaskCreateInput) {
+    return this.prisma.task.create({
+      data: createTaskInput,
+    })
   }
 
-  findAll() {
-    return `This action returns all task`
+  findAll(orderBy?: OrderByParams) {
+    const { field, direction } = orderBy || {}
+    return this.prisma.task.findMany({
+      orderBy: {
+        [field]: direction,
+      },
+    })
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} task`
+  findOne(uniqueKey: Prisma.TaskWhereUniqueInput) {
+    return this.prisma.task.findUnique({
+      where: uniqueKey,
+    })
   }
 
-  update(id: number, updateTaskInput: UpdateTaskInput) {
-    return `This action updates a #${id} task`
+  update(id: number, updateTaskInput: Prisma.TaskUpdateInput) {
+    return this.prisma.task.update({
+      where: {
+        id,
+      },
+      data: updateTaskInput,
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} task`
+    return this.prisma.task.delete({
+      where: {
+        id,
+      },
+    })
   }
 }
