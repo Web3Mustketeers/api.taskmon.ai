@@ -11,7 +11,6 @@ RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "lin
 RUN npm install -g pnpm
 RUN pnpm install
 
-
 RUN npm run build
 
 # Deploy stage
