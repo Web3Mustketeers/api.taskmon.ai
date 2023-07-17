@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "npx install -g pnpm && pnpm install"
+buildCommand = "npx install -g pnpm && pnpm install && npm run build"
 
 [deploy]
 startCommand = "npx pnpm start:prod"
