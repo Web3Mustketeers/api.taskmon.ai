@@ -3,12 +3,13 @@ FROM node:19 AS builder
 WORKDIR /app
 COPY package*.json pnpm-lock.yaml ./
 
+RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "linux-musl-openssl-3.0.x"]' prisma/schema.prisma
+
 RUN npm install -g pnpm
 RUN pnpm install
 
 COPY . .
 
-RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "linux-musl-openssl-3.0.x"]' prisma/schema.prisma
 RUN npx prisma generate
 RUN pnpm build
 
