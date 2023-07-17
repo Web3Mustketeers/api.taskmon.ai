@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "devCommand": "npm run start:dev",
-  "outputDirectory": "dist",
-  "installCommand": "pnpm install" ,
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm prisma:generate && pnpm gen-typings && pnpm build",
+  "devCommand": "pnpm start:dev",
   "builds": [
     {
       "src": "src/main.ts",

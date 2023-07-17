@@ -1,15 +1,19 @@
 # Build stage
 FROM node:19 AS builder
 WORKDIR /app
-COPY package*.json pnpm-lock.yaml ./
 
-RUN npm install -g pnpm
-RUN pnpm install
+#COPY package*.json pnpm-lock.yaml ./
 
 COPY . .
 
 RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "linux-musl-openssl-3.0.x"]' prisma/schema.prisma
-RUN pnpm run build
+
+RUN npm install -g pnpm
+RUN pnpm install
+
+
+RUN npx prisma generate
+RUN pnpm build
 
 # Deploy stage
 FROM node:19-alpine
@@ -33,11 +37,6 @@ EXPOSE $PORT
 
 COPY --from=builder /app ./
 
-RUN npm install -g pnpm
+CMD ["sh", "-c", "npm run test && npm run test:e2e"]
 
-
-CMD ["pnpm","test","&&","pnpm","test:e2e" ]
-
-
-ENTRYPOINT ["npx","pnpm", "run", "start:prod"]
-
+ENTRYPOINT ["npm", "run", "start:prod"]
