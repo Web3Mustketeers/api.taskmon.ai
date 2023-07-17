@@ -11,8 +11,7 @@ RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "lin
 RUN npm install -g pnpm
 RUN pnpm install
 
-
-RUN npm run build
+RUN #npm run build already post-install
 
 # Deploy stage
 FROM node:19-alpine
@@ -29,8 +28,6 @@ ENV DATABASE_URL=""
 ENV JWT_SECRET="Hiro@laciferin"
 
 WORKDIR /app
-
-
 
 RUN if [ "$RAILWAY_ENVIRONMENT" != "" ]; then echo $RAILWAY_ENVIRONMENT > ".env"; fi
 

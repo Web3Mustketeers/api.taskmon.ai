@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prebuild": "npm run prisma:generate && npm run gen-typings",
-    "postinstall": "npm run prisma:generate && npm run gen-typings && npm run build",
+    "postinstall": "npm run build",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"  \"prisma/**/*.ts\"",
     "dev": "concurrently \"pnpm:start:dev\" \"pnpm:gen-typings:watch\" \"pnpm:prisma:generate:watch\"",
@@ -19,7 +19,7 @@
     "start": "nest start",
     "start:dev": "MODE=dev nest start --watch",
     "start:debug": "mode=dev nest start --debug --watch",
-    "start:prod": "mode=prod node dist/main",
+    "start:prod": "mode=prod node dist/src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "prisma:seed": "prisma db seed",
     "prisma:generate": "prisma generate",
