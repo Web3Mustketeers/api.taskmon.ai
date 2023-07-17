@@ -30,8 +30,6 @@ ENV JWT_SECRET="Hiro@laciferin"
 
 WORKDIR /app
 
-
-
 RUN if [ "$RAILWAY_ENVIRONMENT" != "" ]; then echo $RAILWAY_ENVIRONMENT > ".env"; fi
 
 EXPOSE $PORT
