@@ -12,8 +12,7 @@ RUN npm install -g pnpm
 RUN pnpm install
 
 
-RUN npx prisma generate
-RUN pnpm build
+RUN npm run build
 
 # Deploy stage
 FROM node:19-alpine
