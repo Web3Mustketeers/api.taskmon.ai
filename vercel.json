@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm start:dev",
   "builds": [
     {
       "src": "src/main.ts",
@@ -9,7 +11,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist",
+      "dest": "src/main.ts",
       "methods": [
         "GET",
         "POST",
