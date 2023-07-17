@@ -22,15 +22,17 @@ LABEL maintainer="Hiro <laciferin@gmail.com>"
 ARG RAILWAY_ENVIRONMENT=""
 ENV RAILWAY_ENVIRONMENT=$RAILWAY_ENVIRONMENT
 
-WORKDIR /app
-
-RUN if [ "$RAILWAY_ENVIRONMENT" != "" ]; then echo $RAILWAY_ENVIRONMENT > ".env"; fi
-
 ENV PORT=8080
 ENV NODE_ENV="production"
 ENV MODE="prod"
 ENV DATABASE_URL=""
 ENV JWT_SECRET="Hiro@laciferin"
+
+WORKDIR /app
+
+
+
+RUN if [ "$RAILWAY_ENVIRONMENT" != "" ]; then echo $RAILWAY_ENVIRONMENT > ".env"; fi
 
 EXPOSE $PORT
 
