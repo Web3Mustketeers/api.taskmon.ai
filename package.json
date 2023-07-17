@@ -10,7 +10,7 @@
   },
   "scripts": {
     "prebuild": "prisma generate && pnpm gen-typings",
-    "postinstall": "prisma generate && pnpm gen-typings",
+    "postinstall": "prisma generate && pnpm gen-typings && prisma db seed",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"  \"prisma/**/*.ts\"",
     "dev": "concurrently \"pnpm:start:dev\" \"pnpm:gen-typings:watch\" \"pnpm:prisma:generate\"",
