@@ -67,13 +67,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Prisma Generate
-        run: npx prisma generate
-
       - name: Build
-        run: pnpm build
+        run: npm run build
 
       - name: Run tests for ${{runner.os}}
-        run: pnpm test
+        run: npm run test
 #      - name: E2E
-#        run: pnpm test:e2e
+#        run: npm run test:e2e
