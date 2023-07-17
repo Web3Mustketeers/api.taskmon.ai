@@ -9,7 +9,7 @@ RUN pnpm install
 COPY . .
 
 RUN sed -i '/provider = "prisma-client-js"/a \ \ binaryTargets = ["native", "linux-musl-openssl-3.0.x"]' prisma/schema.prisma
-RUN npx prisma generate --schema prisma/schema.prisma
+RUN npx prisma generate
 RUN pnpm run build
 
 # Deploy stage
@@ -34,11 +34,9 @@ EXPOSE $PORT
 
 COPY --from=builder /app ./
 
-RUN npm install -g pnpm
+
+CMD ["npm","run","test","&&","npm","run" ,"test:e2e" ]
 
 
-CMD ["pnpm","test","&&","pnpm","test:e2e" ]
-
-
-ENTRYPOINT ["npx","pnpm", "run", "start:prod"]
+ENTRYPOINT ["npm", "run", "start:prod"]
 
