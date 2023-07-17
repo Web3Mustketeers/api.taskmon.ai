@@ -32,6 +32,8 @@ switch (mode) {
     envFile = '.env.local'
 }
 
+console.debug({ mode, envFile })
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -42,7 +44,7 @@ switch (mode) {
         MODE: Joi.string().valid('dev', 'prod', 'test').default('dev'),
         PORT: Joi.number().default(1606),
         DATABASE_URL: Joi.string(),
-        JWT_SECRET: Joi.string(),
+        JWT_SECRET: Joi.string().default('Hiro@JWT#TOKEN$'),
         JWT_MAX_AGE: Joi.number().default(2 * 60 * 60 * 1000),
       }),
     }),
