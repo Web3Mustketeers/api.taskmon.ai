@@ -35,8 +35,7 @@ EXPOSE $PORT
 COPY --from=builder /app ./
 
 
-CMD ["npm","run","test","&&","npm","run" ,"test:e2e" ]
-
+CMD ["sh", "-c", "npm run test && npm run test:e2e"]
 
 ENTRYPOINT ["npm", "run", "start:prod"]
 
