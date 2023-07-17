@@ -25,7 +25,7 @@ async function bootstrap() {
     }),
   )
 
-  const port = config.get('PORT') || 1606
+  const port = config.get('PORT')
   console.log(`App is running on ${port}`)
 
   await app.listen(port)

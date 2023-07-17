@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm prisma:generate && pnpm gen-typings",
   "devCommand": "pnpm start:dev",
   "builds": [
     {
