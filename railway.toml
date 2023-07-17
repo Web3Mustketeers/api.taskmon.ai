@@ -1,6 +1,9 @@
 [build]
 builder = "nixpacks"
 buildCommand = "npx install -g pnpm && pnpm install && npm run build"
+#dockerfilePath = "Dockerfile.backend"
+
+
 
 [deploy]
 startCommand = "npx pnpm start:prod"
