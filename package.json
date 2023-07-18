@@ -32,7 +32,8 @@
     "test:cov": "MODE=test jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "MODE=test jest --config ./test/jest-e2e.json",
-    "test:e2e:watch": "MODE=test jest --watch --no-cache --config ./test/jest-e2e.json"
+    "test:e2e:watch": "MODE=test jest --watch --no-cache --config ./test/jest-e2e.json",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
   "dependencies": {
     "@apollo/server": "^4.7.5",
@@ -68,6 +69,7 @@
   },
   "devDependencies": {
     "@apollo/server-plugin-landing-page-graphql-playground": "^4.0.1",
+    "@compodoc/compodoc": "^1.1.21",
     "@nestjs/cli": "^10.1.8",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.5",
