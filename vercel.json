@@ -5,8 +5,7 @@
   "devCommand": "npm run start:dev",
   "builds": [
     {
-      "use": "@vercel/node",
-      "dest": "src/main.ts"
+      "use": "@vercel/node"
     }
   ],
   "routes": [
