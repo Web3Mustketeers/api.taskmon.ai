@@ -5,7 +5,6 @@
   "devCommand": "npm run start:dev",
   "builds": [
     {
-      "src": "src/main.ts",
       "use": "@vercel/node"
     }
   ],
