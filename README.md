@@ -34,17 +34,18 @@ Task management allows users to register, create tasks and manage them, major fe
 - Database interactions are handled in Repository classes using TypeORM
 - Validation using NestJS Pipes
 - Data Transfer Object(DTO) pattern for transferring data between layers
-- Configuration management using .yml files for development, test & prod configs
+- Configuration management using .env files for development, test & prod configs
 - Authentication / Authorization, Task ownership by users
 - PassportJS, JWT tokens, Password hashing, salts
 - Unit tests using Jest
-- Supertest for end to end testing
+- Supertest for E2E testing
 
-### Technical documentation using [Compodoc](https://compodoc.app)
+### Technical documentation using [Compodoc](https://web3mustketeers.github.io/api.taskmon.ai/)
 
 As NestJS is heavily inspired by Angular, we can generate the documentation about project structure modules, controllers, services etc. I
-have generated the docks and uploaded to netlify
+have generated the docs.
 
+Find 'em here - https://web3mustketeers.github.io/api.taskmon.ai/
 
 
 ## Installation
