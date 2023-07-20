@@ -6,9 +6,10 @@ buildCommand = "npx install -g pnpm && pnpm install && npm run build"
 
 
 [deploy]
-startCommand = "npx prisma migrate deploy && npx pnpm start:prod"
+#FIXME: remove
+startCommand = "npx prisma migrate deploy && sleep 2 && npx pnpm start:prod"
 healthcheckPath = "/health"
-healthcheckTimeout = 60
+healthcheckTimeout = 200
 restartPolicyType = "on_failure"
 numReplicas = 1
 restartPolicyMaxRetries = 1
