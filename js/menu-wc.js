@@ -64,13 +64,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#controllers-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' : 'data-bs-target="#xs-controllers-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' }>
+                                            'data-bs-target="#controllers-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' : 'data-bs-target="#xs-controllers-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' :
-                                            'id="xs-controllers-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' :
+                                            'id="xs-controllers-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppController</a>
                                             </li>
@@ -78,13 +78,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' : 'data-bs-target="#xs-injectables-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' }>
+                                        'data-bs-target="#injectables-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' : 'data-bs-target="#xs-injectables-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' :
-                                        'id="xs-injectables-links-module-AppModule-d9868e0206262acc3717fc5e621b2239d20b2c2cf9b4fe6b70186fca7e03a0b58856f87d6e6b361815032b85558d904c31f21d90cd41c4a731ebacedb7de8239"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' :
+                                        'id="xs-injectables-links-module-AppModule-03bed651e3b3523a8fface4a027676bc00679d5dcbdd9c615d1f260402e9e10b4364b535250e70d48c3fc0f8e75dec39678ad7878d7d096b4cb2c0b8aee848cf"' }>
                                         <li class="link">
                                             <a href="injectables/AppService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppService</a>
                                         </li>
@@ -392,7 +392,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/BoardUncheckedUpdateManyInput.html" data-type="entity-link" >BoardUncheckedUpdateManyInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/BoardUncheckedUpdateManyWithoutBoardInput.html" data-type="entity-link" >BoardUncheckedUpdateManyWithoutBoardInput</a>
+                                <a href="classes/BoardUncheckedUpdateManyWithoutWalletInput.html" data-type="entity-link" >BoardUncheckedUpdateManyWithoutWalletInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/BoardUncheckedUpdateManyWithoutWalletNestedInput.html" data-type="entity-link" >BoardUncheckedUpdateManyWithoutWalletNestedInput</a>
@@ -417,6 +417,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/BoardUpdateOneRequiredWithoutColumnsNestedInput.html" data-type="entity-link" >BoardUpdateOneRequiredWithoutColumnsNestedInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/BoardUpdateToOneWithWhereWithoutColumnsInput.html" data-type="entity-link" >BoardUpdateToOneWithWhereWithoutColumnsInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/BoardUpdateWithoutColumnsInput.html" data-type="entity-link" >BoardUpdateWithoutColumnsInput</a>
@@ -593,10 +596,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ColumnUncheckedUpdateManyInput.html" data-type="entity-link" >ColumnUncheckedUpdateManyInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ColumnUncheckedUpdateManyWithoutBoardNestedInput.html" data-type="entity-link" >ColumnUncheckedUpdateManyWithoutBoardNestedInput</a>
+                                <a href="classes/ColumnUncheckedUpdateManyWithoutBoardInput.html" data-type="entity-link" >ColumnUncheckedUpdateManyWithoutBoardInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ColumnUncheckedUpdateManyWithoutColumnsInput.html" data-type="entity-link" >ColumnUncheckedUpdateManyWithoutColumnsInput</a>
+                                <a href="classes/ColumnUncheckedUpdateManyWithoutBoardNestedInput.html" data-type="entity-link" >ColumnUncheckedUpdateManyWithoutBoardNestedInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ColumnUncheckedUpdateWithoutBoardInput.html" data-type="entity-link" >ColumnUncheckedUpdateWithoutBoardInput</a>
@@ -618,6 +621,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/ColumnUpdateOneRequiredWithoutTasksNestedInput.html" data-type="entity-link" >ColumnUpdateOneRequiredWithoutTasksNestedInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ColumnUpdateToOneWithWhereWithoutTasksInput.html" data-type="entity-link" >ColumnUpdateToOneWithWhereWithoutTasksInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ColumnUpdateWithoutBoardInput.html" data-type="entity-link" >ColumnUpdateWithoutBoardInput</a>
@@ -1004,7 +1010,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SubtaskUncheckedUpdateManyInput.html" data-type="entity-link" >SubtaskUncheckedUpdateManyInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SubtaskUncheckedUpdateManyWithoutSubtaskInput.html" data-type="entity-link" >SubtaskUncheckedUpdateManyWithoutSubtaskInput</a>
+                                <a href="classes/SubtaskUncheckedUpdateManyWithoutTaskInput.html" data-type="entity-link" >SubtaskUncheckedUpdateManyWithoutTaskInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SubtaskUncheckedUpdateManyWithoutTaskNestedInput.html" data-type="entity-link" >SubtaskUncheckedUpdateManyWithoutTaskNestedInput</a>
@@ -1181,10 +1187,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/TaskUncheckedUpdateManyInput.html" data-type="entity-link" >TaskUncheckedUpdateManyInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TaskUncheckedUpdateManyWithoutColumnNestedInput.html" data-type="entity-link" >TaskUncheckedUpdateManyWithoutColumnNestedInput</a>
+                                <a href="classes/TaskUncheckedUpdateManyWithoutColumnInput.html" data-type="entity-link" >TaskUncheckedUpdateManyWithoutColumnInput</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TaskUncheckedUpdateManyWithoutTasksInput.html" data-type="entity-link" >TaskUncheckedUpdateManyWithoutTasksInput</a>
+                                <a href="classes/TaskUncheckedUpdateManyWithoutColumnNestedInput.html" data-type="entity-link" >TaskUncheckedUpdateManyWithoutColumnNestedInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TaskUncheckedUpdateWithoutColumnInput.html" data-type="entity-link" >TaskUncheckedUpdateWithoutColumnInput</a>
@@ -1206,6 +1212,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/TaskUpdateOneRequiredWithoutSubtaskNestedInput.html" data-type="entity-link" >TaskUpdateOneRequiredWithoutSubtaskNestedInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/TaskUpdateToOneWithWhereWithoutSubtaskInput.html" data-type="entity-link" >TaskUpdateToOneWithWhereWithoutSubtaskInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TaskUpdateWithoutColumnInput.html" data-type="entity-link" >TaskUpdateWithoutColumnInput</a>
@@ -1407,6 +1416,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/WalletUpdateOneRequiredWithoutBoardNestedInput.html" data-type="entity-link" >WalletUpdateOneRequiredWithoutBoardNestedInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/WalletUpdateToOneWithWhereWithoutBoardInput.html" data-type="entity-link" >WalletUpdateToOneWithWhereWithoutBoardInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/WalletUpdateWithoutBoardInput.html" data-type="entity-link" >WalletUpdateWithoutBoardInput</a>

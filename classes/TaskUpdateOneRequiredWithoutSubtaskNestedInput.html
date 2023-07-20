@@ -267,7 +267,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/TaskUpdateWithoutSubtaskInput.html" target="_self" >TaskUpdateWithoutSubtaskInput</a></code>
+                        <i>Type : </i>        <code><a href="../classes/TaskUpdateToOneWithWhereWithoutSubtaskInput.html" target="_self" >TaskUpdateToOneWithWhereWithoutSubtaskInput</a></code>
 
                     </td>
                 </tr>
@@ -346,7 +346,7 @@ import { Type } from &#x27;class-transformer&#x27;;
 import { TaskCreateOrConnectWithoutSubtaskInput } from &#x27;./task-create-or-connect-without-subtask.input&#x27;;
 import { TaskUpsertWithoutSubtaskInput } from &#x27;./task-upsert-without-subtask.input&#x27;;
 import { TaskWhereUniqueInput } from &#x27;./task-where-unique.input&#x27;;
-import { TaskUpdateWithoutSubtaskInput } from &#x27;./task-update-without-subtask.input&#x27;;
+import { TaskUpdateToOneWithWhereWithoutSubtaskInput } from &#x27;./task-update-to-one-with-where-without-subtask.input&#x27;;
 
 @InputType()
 export class TaskUpdateOneRequiredWithoutSubtaskNestedInput {
@@ -367,9 +367,9 @@ export class TaskUpdateOneRequiredWithoutSubtaskNestedInput {
     @Type(() &#x3D;&gt; TaskWhereUniqueInput)
     connect?: TaskWhereUniqueInput;
 
-    @Field(() &#x3D;&gt; TaskUpdateWithoutSubtaskInput, {nullable:true})
-    @Type(() &#x3D;&gt; TaskUpdateWithoutSubtaskInput)
-    update?: TaskUpdateWithoutSubtaskInput;
+    @Field(() &#x3D;&gt; TaskUpdateToOneWithWhereWithoutSubtaskInput, {nullable:true})
+    @Type(() &#x3D;&gt; TaskUpdateToOneWithWhereWithoutSubtaskInput)
+    update?: TaskUpdateToOneWithWhereWithoutSubtaskInput;
 }
 </code></pre>
     </div>

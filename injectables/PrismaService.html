@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/prisma/prisma.service.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/prisma/prisma.service.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -187,8 +187,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/prisma/prisma.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/prisma/prisma.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -226,8 +226,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/prisma/prisma.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/prisma/prisma.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/prisma/prisma.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/prisma/prisma.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -320,37 +320,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  INestApplication,
-  Injectable,
-  OnApplicationBootstrap,
-  OnApplicationShutdown,
-  OnModuleInit,
-} from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { INestApplication, Injectable, OnModuleInit } from &#x27;@nestjs/common&#x27;
 import { PrismaClient } from &#x27;@prisma/client&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
+import kleur from &#x27;kleur&#x27;
+import { format } from &#x27;sql-formatter&#x27;
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   // FIXME doesn&#x27;t work for e2e OnModuleDestroy{
   // https://docs.nestjs.com/fundamentals/lifecycle-events
 
-  async onModuleInit() {
-    console.info(new Date(), &#x27;connecting to the database&#x27;)
-    await this.$connect()
-  }
-
-  // async onModuleDestroy() {
-  //   console.warn(new Date(), &#x27;disconnecting the database&#x27;)
-  //   await this.$disconnect()
-  //   console.info(new Date(), &#x27;disconnected database&#x27;)
-  // }
-
-  async enableShutdownHooks(app: INestApplication) {
-    this.$on(&#x27;beforeExit&#x27;, async () &#x3D;&gt; {
-      await app.close()
-    })
-  }
   constructor(config: ConfigService) {
     const sslcert &#x3D; &#x27;?sslcert&#x3D;root.crt&#x27;
     //https://www.prisma.io/docs/concepts/database-connectors/postgresql#configuring-an-ssl-connection
@@ -360,6 +340,57 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
           url: config.get&lt;string&gt;(&#x27;DATABASE_URL&#x27;) + sslcert,
         },
       },
+      log: [
+        {
+          emit: &#x27;event&#x27;,
+          level: &#x27;query&#x27;,
+        },
+        {
+          emit: &#x27;stdout&#x27;,
+          level: &#x27;error&#x27;,
+        },
+        {
+          emit: &#x27;stdout&#x27;,
+          level: &#x27;info&#x27;,
+        },
+        {
+          emit: &#x27;stdout&#x27;,
+          level: &#x27;warn&#x27;,
+        },
+      ],
+    })
+
+    process.env.FORCE_COLOR &#x3D; &#x27;true&#x27;
+
+    // @ts-ignore
+    this.$on(&#x27;query&#x27;, async (e: any) &#x3D;&gt; {
+      // const chalk &#x3D; await import(&#x27;chalk&#x27;)
+      // console.log(chalk.yellow(&#x27;Query: &#x27;) + chalk.green(e.query))
+      // console.log(chalk.yellow(&#x27;Params: &#x27;) + chalk.cyan(JSON.stringify(e.params)))
+      // console.log(chalk.yellow(&#x27;Duration: &#x27;) + chalk.magenta(&#x60;${e.duration}ms&#x60;))
+      const query &#x3D; e.query
+
+      const formattedQuery &#x3D; format(query, {
+        language: &#x27;postgresql&#x27;,
+        tabWidth: 2,
+        keywordCase: &#x27;upper&#x27;,
+        linesBetweenQueries: 2,
+        params: e.params || [],
+      })
+      console.log(kleur.yellow(&#x27;Query: &#x27;) + kleur.green(formattedQuery))
+      console.log(kleur.yellow(&#x27;Params: &#x27;) + kleur.cyan(JSON.stringify(e.params)))
+      console.log(kleur.yellow(&#x27;Duration: &#x27;) + kleur.magenta(&#x60;${e.duration}ms&#x60;))
+    })
+  }
+  async onModuleInit() {
+    console.info(new Date(), &#x27;connecting to the database&#x27;)
+    await this.$connect()
+  }
+
+  async enableShutdownHooks(app: INestApplication) {
+    // @ts-ignore
+    this.$on(&#x27;beforeExit&#x27;, async () &#x3D;&gt; {
+      await app.close()
     })
   }
 
