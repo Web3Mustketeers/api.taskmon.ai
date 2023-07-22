@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, HttpStatus } from '@nestjs/common'
+import { ArgumentsHost, Catch, ConflictException, HttpStatus } from '@nestjs/common'
 import { BaseExceptionFilter } from '@nestjs/core'
 import {
   PrismaClientKnownRequestError,
@@ -7,6 +7,7 @@ import {
 import { Prisma } from '@prisma/client'
 import { Response } from 'express'
 import { GqlExceptionFilter, GraphQLArgumentsHost } from '@nestjs/graphql'
+import { GraphQLResponse } from '@apollo/server'
 
 @Catch(PrismaClientUnknownRequestError, PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter
@@ -19,26 +20,37 @@ export class PrismaClientExceptionFilter
   ) {
     console.error(exception.message)
     const ctx = host.switchToHttp()
-    const response = ctx.getResponse<Response>()
-    const message = exception.message.replace(/\n/g, '')
-
+    const response = ctx.getResponse<Response | GraphQLResponse>()
+    // const message = exception.message.replace(/\n/g, '')
+    const message = exception.message
     switch (exception.code) {
       case 'P2002': {
         // https://www.prisma.io/docs/reference/api-reference/error-reference
         // unique constraint failed
         // const status = HttpStatus.CONFLICT
-        console.error('DB:caught P2002 error')
-        response.status(HttpStatus.CONFLICT).json({
+        const payload = {
           statusCode: HttpStatus.BAD_REQUEST,
           message: 'DB_ERROR:Unique input fields required',
           error: message, // You can customize the error message based on your needs
-        })
+        }
+
+        console.error('DB:caught P2002 error')
+        // response.status(HttpStatus.CONFLICT).json(payload) //FIXME
+        throw new ConflictException(payload)
+        // throwHttpGraphQLError(HttpStatus.CONFLICT, [exception])
         break
       }
       default:
         // default 500 error code
         // super.catch(exception, host)
-        response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        console.error('DB Error:', exception.code)
+        /* response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: 'Database Error',
+          error: message, // You can customize the error message based on your needs
+        })*/
+
+        throw new ConflictException({
           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
           message: 'Database Error',
           error: message, // You can customize the error message based on your needs
