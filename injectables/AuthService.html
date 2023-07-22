@@ -275,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/auth/auth.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/auth/auth.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -354,7 +354,6 @@ export class AuthService {
         address: dto.wallet,
       },
     })
-
     if (!wallet) throw new ForbiddenException(&#x27;invalid credentials&#x27;)
 
     return this.signToken(wallet.id)

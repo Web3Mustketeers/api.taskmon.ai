@@ -95,6 +95,7 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#isActive" >isActive</a>
                             </li>
                             <li>
@@ -174,6 +175,7 @@
                     <a name="isActive"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier">Optional</span>
                         <span ><b>isActive</b></span>
                         <a href="#isActive"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -190,7 +192,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Field(undefined, {nullable: false})<br />
+                            @Field(undefined, {nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -337,8 +339,8 @@ export class BoardCreateWithoutColumnsInput {
     @Validator.MinLength(3)
     name!: string;
 
-    @Field(() &#x3D;&gt; Boolean, {nullable:false})
-    isActive!: boolean;
+    @Field(() &#x3D;&gt; Boolean, {nullable:true})
+    isActive?: boolean;
 
     @Field(() &#x3D;&gt; Date, {nullable:true})
     createdAt?: Date | string;

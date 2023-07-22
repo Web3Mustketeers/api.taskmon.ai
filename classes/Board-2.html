@@ -315,7 +315,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Field(undefined, {nullable: false})<br />
+                            @Field(undefined, {nullable: false, defaultValue: false})<br />
                         </code>
                     </td>
                 </tr>
@@ -502,7 +502,7 @@ export class Board {
     @Field(() &#x3D;&gt; String, {nullable:false})
     name!: string;
 
-    @Field(() &#x3D;&gt; Boolean, {nullable:false})
+    @Field(() &#x3D;&gt; Boolean, {nullable:false,defaultValue:false})
     isActive!: boolean;
 
     @Field(() &#x3D;&gt; Int, {nullable:false})
