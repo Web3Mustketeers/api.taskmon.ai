@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config'
 import { ValidationPipe, VersioningType } from '@nestjs/common'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
+import { DbExceptionFilter } from '../utils/catch_db_exceptions'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -14,6 +15,7 @@ async function bootstrap() {
 
   app.use(cookieParser(config.get('JWT_SECRET')))
   app.enableCors()
+  app.useGlobalFilters(new DbExceptionFilter())
   app.enableVersioning({
     type: VersioningType.HEADER,
     header: 'Accept-Version',
