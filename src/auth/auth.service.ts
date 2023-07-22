@@ -22,7 +22,6 @@ export class AuthService {
         address: dto.wallet,
       },
     })
-
     if (!wallet) throw new ForbiddenException('invalid credentials')
 
     return this.signToken(wallet.id)

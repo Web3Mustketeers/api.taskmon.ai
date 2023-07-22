@@ -16,7 +16,7 @@ async function bootstrap() {
   app.use(cookieParser(config.get('JWT_SECRET')))
   app.enableCors()
   // app.useGlobalFilters(new DbExceptionFilter())
-  const { httpAdapter } = app.get(HttpAdapterHost)
+  const { httpAdapter } = app.get(HttpAdapterHost) //FIXME: not required as nestJS already provides access to the res object
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
   app.enableVersioning({
     type: VersioningType.HEADER,
