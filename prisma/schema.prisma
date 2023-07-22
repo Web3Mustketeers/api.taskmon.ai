@@ -35,7 +35,7 @@ model Board {
   id       Int     @id @default(sequence(minValue: 1)) @db.Int4
   /// @Validator.MinLength(3)
   name     String
-  isActive Boolean
+  isActive Boolean @default(false)
   walletId Int
   wallet   Wallet  @relation(fields: [walletId], references: [id], onDelete: Cascade)
 

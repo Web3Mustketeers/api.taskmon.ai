@@ -63,7 +63,7 @@ export class UpdateTaskInput {
 export class Board {
     id: number;
     name: string;
-    isActive: boolean;
+    isActive?: Nullable<boolean>;
     walletId: number;
     createdAt: DateTime;
     updatedAt?: Nullable<DateTime>;
