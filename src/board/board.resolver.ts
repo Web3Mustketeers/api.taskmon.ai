@@ -3,8 +3,11 @@ import { BoardService } from './board.service'
 import { Board, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
+import { GqlAuthGuard } from '../auth/guard'
+import { UseGuards } from '@nestjs/common'
 
 @Resolver('Board')
+@UseGuards(GqlAuthGuard)
 export class BoardResolver {
   constructor(
     private readonly boardService: BoardService,
