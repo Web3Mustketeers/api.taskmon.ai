@@ -27,6 +27,7 @@ export class PrismaClientExceptionFilter
         // https://www.prisma.io/docs/reference/api-reference/error-reference
         // unique constraint failed
         // const status = HttpStatus.CONFLICT
+        console.error('DB:caught P2002 error')
         response.status(HttpStatus.CONFLICT).json({
           statusCode: HttpStatus.BAD_REQUEST,
           message: 'DB_ERROR:Unique input fields required',
