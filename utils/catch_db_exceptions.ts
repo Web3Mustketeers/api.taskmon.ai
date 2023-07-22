@@ -6,12 +6,16 @@ import {
 } from '@prisma/client/runtime/library'
 import { Prisma } from '@prisma/client'
 import { Response } from 'express'
+import { GqlExceptionFilter, GraphQLArgumentsHost } from '@nestjs/graphql'
 
 @Catch(PrismaClientUnknownRequestError, PrismaClientKnownRequestError)
-export class PrismaClientExceptionFilter extends BaseExceptionFilter {
+export class PrismaClientExceptionFilter
+  extends BaseExceptionFilter
+  implements GqlExceptionFilter
+{
   catch(
     exception: Prisma.PrismaClientKnownRequestError | PrismaClientKnownRequestError,
-    host: ArgumentsHost,
+    host: ArgumentsHost | GraphQLArgumentsHost,
   ) {
     console.error(exception.message)
     const ctx = host.switchToHttp()
