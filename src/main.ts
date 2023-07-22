@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core'
+import { HttpAdapterHost, NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { ConfigService } from '@nestjs/config'
 import { ValidationPipe, VersioningType } from '@nestjs/common'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
-import { DbExceptionFilter } from '../utils/catch_db_exceptions'
+import { PrismaClientExceptionFilter } from '../utils/catch_db_exceptions'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -15,7 +15,9 @@ async function bootstrap() {
 
   app.use(cookieParser(config.get('JWT_SECRET')))
   app.enableCors()
-  app.useGlobalFilters(new DbExceptionFilter())
+  // app.useGlobalFilters(new DbExceptionFilter())
+  const { httpAdapter } = app.get(HttpAdapterHost)
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
   app.enableVersioning({
     type: VersioningType.HEADER,
     header: 'Accept-Version',
