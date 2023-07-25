@@ -51,7 +51,7 @@ console.debug({ mode, envFile })
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       // context: ({ req }) => ({ req }),
-      autoSchemaFile: true,
+      autoSchemaFile: false, // schema-first
       playground: false,
       driver: ApolloDriver,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
