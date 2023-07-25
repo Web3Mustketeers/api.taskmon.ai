@@ -3,11 +3,12 @@ import { BoardService } from './board.service'
 import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
-import { GqlAuthGuard } from '../auth/guard'
+import { JwtGuard } from '../auth/guard'
 import { UseGuards } from '@nestjs/common'
+import { GetUser } from '../auth/decorator'
 
 @Resolver('Board')
-@UseGuards(GqlAuthGuard)
+@UseGuards(JwtGuard)
 export class BoardResolver {
   constructor(
     private readonly boardService: BoardService,
@@ -25,8 +26,11 @@ export class BoardResolver {
   }
 
   @Mutation('createBoard')
-  create(@Args('data') createBoardInput: CreateBoardInput) {
-    console.debug({ createBoardInput })
+  create(
+    @Args('data') createBoardInput: CreateBoardInput,
+    @GetUser('walletId') walletId: number,
+  ) {
+    console.debug({ walletId })
     //FIXME:
     return this.boardService.create({ ...createBoardInput, walletId: 1 })
   }
