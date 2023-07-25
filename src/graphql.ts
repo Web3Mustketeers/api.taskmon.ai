@@ -11,7 +11,7 @@
 export class CreateBoardInput {
     name: string;
     isActive?: Nullable<boolean>;
-    walletId: number;
+    walletId?: Nullable<number>;
 }
 
 export class UpdateBoardInput {

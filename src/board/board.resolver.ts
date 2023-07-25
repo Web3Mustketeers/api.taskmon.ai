@@ -1,6 +1,6 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { BoardService } from './board.service'
-import { Board, OrderByParams } from '../graphql'
+import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
 import { GqlAuthGuard } from '../auth/guard'
@@ -25,9 +25,10 @@ export class BoardResolver {
   }
 
   @Mutation('createBoard')
-  create(@Args('data') createBoardInput: Prisma.BoardCreateInput) {
+  create(@Args('data') createBoardInput: CreateBoardInput) {
     console.debug({ createBoardInput })
-    return this.boardService.create(createBoardInput)
+    //FIXME:
+    return this.boardService.create({ ...createBoardInput, walletId: 1 })
   }
   @Mutation('updateBoard')
   update(
