@@ -4,9 +4,11 @@ import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
 import { GetUser } from '../auth/decorator'
+import { JwtGuard } from '../auth/guard'
+import { UseGuards } from '@nestjs/common'
 
 @Resolver('Board')
-// @UseGuards(JwtGuard)
+@UseGuards(JwtGuard)
 export class BoardResolver {
   constructor(
     private readonly boardService: BoardService,
