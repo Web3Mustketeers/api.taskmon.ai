@@ -4,8 +4,11 @@ import { CreateTaskInput } from './dto/create-task.input'
 import { Task } from '../graphql'
 import { Subtask } from '../@generated/prisma-nestjs-graphql/subtask/subtask.model'
 import { SubtaskService } from '../subtask/subtask.service'
+import { UseGuards } from '@nestjs/common'
+import { JwtGuard } from '../auth/guard'
 
 @Resolver('Task')
+@UseGuards(JwtGuard)
 export class TaskResolver {
   constructor(
     private readonly taskService: TaskService,

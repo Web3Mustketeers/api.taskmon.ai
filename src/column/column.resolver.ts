@@ -3,8 +3,11 @@ import { ColumnService } from './column.service'
 import { CreateColumnInput } from './dto/create-column.input'
 import { Column } from '../graphql'
 import { TaskService } from '../task/task.service'
+import { UseGuards } from '@nestjs/common'
+import { JwtGuard } from '../auth/guard'
 
 @Resolver('Column')
+@UseGuards(JwtGuard)
 export class ColumnResolver {
   constructor(
     private readonly columnService: ColumnService,

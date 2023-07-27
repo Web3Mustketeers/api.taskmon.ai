@@ -1,8 +1,11 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { SubtaskService } from './subtask.service'
 import { CreateSubTaskInput } from './dto/create-subtask.input'
+import { UseGuards } from '@nestjs/common'
+import { JwtGuard } from '../auth/guard'
 
 @Resolver('SubTask')
+@UseGuards(JwtGuard)
 export class SubtaskResolver {
   constructor(private readonly subtaskService: SubtaskService) {}
 
