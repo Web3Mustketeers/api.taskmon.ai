@@ -50,7 +50,7 @@ console.debug({ mode, envFile })
     }),
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      // context: ({ req }) => ({ req }),
+      context: ({ req }) => ({ req }), //required for cookies
       autoSchemaFile: false, // schema-first
       playground: false,
       driver: ApolloDriver,
@@ -72,3 +72,10 @@ console.debug({ mode, envFile })
   providers: [AppService],
 })
 export class AppModule {}
+/*export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(cookieParser())
+      .forRoutes({ path: '/graphql', method: RequestMethod.ALL })
+  }
+}*/

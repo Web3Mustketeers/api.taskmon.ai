@@ -14,7 +14,16 @@ async function bootstrap() {
   app.enableShutdownHooks()
 
   app.use(cookieParser(config.get('JWT_SECRET')))
-  app.enableCors()
+  app.enableCors({
+    origin: [
+      'https://studio.apollographql.com',
+      'surge.sh',
+      'github.io',
+      'vercel.app',
+      '*',
+    ],
+    credentials: true,
+  })
   // app.useGlobalFilters(new DbExceptionFilter())
   const { httpAdapter } = app.get(HttpAdapterHost) //FIXME: not required as nestJS already provides access to the res object
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
