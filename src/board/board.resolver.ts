@@ -29,10 +29,9 @@ export class BoardResolver {
     @GetUser('walletId') walletId: number,
   ) {
     console.debug({ walletId })
-    //FIXME:
     return this.boardService.create({
       ...createBoardInput,
-      walletId: createBoardInput.walletId ?? 1, //FIXME: remove 1
+      walletId: createBoardInput.walletId ?? walletId,
     })
   }
   @Mutation('updateBoard')
