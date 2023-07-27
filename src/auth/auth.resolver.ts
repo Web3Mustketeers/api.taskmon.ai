@@ -7,13 +7,13 @@ import { Response } from 'express'
 @Resolver()
 export class AuthResolver {
   constructor(
-    private readonly authService: AuthService,
+    private readonly authService: AuthService, //FIXME: remove
     private readonly authController: AuthController,
   ) {}
 
   @Mutation('signIn')
   signIn(@Args('wallet') wallet: string, @Res() res: Response) {
-    // return this.authService.signin({ wallet }) //THis works
+    // return this.authService.signin({ wallet }) //FIXME:
     return this.authController.signin({ wallet }, res)
   }
 }

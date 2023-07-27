@@ -5,6 +5,7 @@ import { Response } from 'express'
 import { ConfigService } from '@nestjs/config'
 
 @Controller('auth')
+// FIXME: check injectable
 export class AuthController {
   constructor(private authService: AuthService, private config: ConfigService) {}
 
