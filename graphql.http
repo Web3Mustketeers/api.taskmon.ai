@@ -35,7 +35,7 @@ Content-Type: application/json
 
 ### Boards
 
-POST http://localhost:1606/graphql
+POST {{u}}/graphql
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
