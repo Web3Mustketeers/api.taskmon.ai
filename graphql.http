@@ -1,5 +1,5 @@
 ### Schema
-POST http://localhost:1606/graphql
+POST {{u}}/graphql
 sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Opera";v="100"
 sec-ch-ua-platform: "macOS"
 Referer:
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 
 ### Signin
-POST http://localhost:1606/graphql
+POST {{u}}/graphql
 Content-Type: application/json
 
 {
