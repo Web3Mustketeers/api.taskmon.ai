@@ -1,11 +1,19 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Res } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Injectable,
+  Post,
+  Res,
+} from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { AuthDto } from './dto'
 import { Response } from 'express'
 import { ConfigService } from '@nestjs/config'
 
+@Injectable()
 @Controller('auth')
-// FIXME: check injectable
 export class AuthController {
   constructor(private authService: AuthService, private config: ConfigService) {}
 

@@ -4,7 +4,7 @@ import { AuthController } from './auth.controller'
 import { Res } from '@nestjs/common'
 import { Response } from 'express'
 
-@Resolver()
+@Resolver('Auth')
 export class AuthResolver {
   constructor(
     private readonly authService: AuthService, //FIXME: remove
