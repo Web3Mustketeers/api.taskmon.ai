@@ -2,11 +2,13 @@ import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { AuthService } from './auth.service'
 import { Res } from '@nestjs/common'
 import { Response } from 'express'
+import { AuthController } from './auth.controller'
 
 @Resolver('Auth')
 export class AuthResolver {
   constructor(
-    private readonly authService: AuthService, //FIXME: remove // private readonly authController: AuthController,
+    private readonly authService: AuthService, //FIXME: remove
+    private readonly authController: AuthController,
   ) {}
 
   @Mutation('signIn')

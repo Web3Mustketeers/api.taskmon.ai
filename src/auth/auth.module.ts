@@ -9,6 +9,6 @@ import { AuthResolver } from './auth.resolver'
 @Module({
   imports: [JwtModule.register({}), PrismaModule],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, AuthResolver],
+  providers: [AuthService, AuthController, JwtStrategy, AuthResolver],
 })
 export class AuthModule {}
