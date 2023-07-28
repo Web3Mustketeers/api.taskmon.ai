@@ -10,16 +10,19 @@ Content-Type: application/x-www-form-urlencoded
 
 wallet=eH9js2vBZGCxb3MmweX9zkJDHp7DmJuZS31tTrQFw8e
 
+### Sign In
+
+POST {{u}}/auth/signin
+Content-Type: application/x-www-form-urlencoded
+
+wallet=EeXZfzgY5WRcUWq3hYtgB3P1EsrnNAJKLwyCSkX2xZQc
+
+
 ### Health
 
 GET {{u}}/health
 Accept: application/json
 
-### Query:Board
 
-POST http://localhost:1606/graphql
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY5MDI1MDI3OSwiZXhwIjoxNjkwMzM2Njc5fQ.5TshsOaLY_40u4hHGn4yn76RgV5QjV_IeWewIJZdMJs
-Content-Type: application/json
 
-{"query":"query Query {\n  boards {\n    id   \n name }\n}"}
 
