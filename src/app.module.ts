@@ -51,6 +51,9 @@ console.debug({ mode, envFile })
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       context: ({ req }) => ({ req }), //required for cookies
+
+      fieldResolverEnhancers: ['interceptors'], //FIXME:unsure
+
       autoSchemaFile: false, // schema-first
       playground: false,
       driver: ApolloDriver,
