@@ -3,7 +3,6 @@ import { BoardService } from './board.service'
 import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
-import { GetUser } from '../auth/decorator'
 
 @Resolver('Board')
 // @UseGuards(JwtGuard)
@@ -25,10 +24,21 @@ export class BoardResolver {
 
   @Mutation('createBoard')
   create(
-    @Args('data') createBoardInput: CreateBoardInput,
-    @GetUser('walletId') walletId: number,
+    // @Context() ctx: GraphQLExecutionContext,
+    @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
+    // @GetUser('walletId') walletId: number,
   ) {
-    console.debug({ walletId })
+    // console.debug({ walletId })
+    // if (!walletId) {
+    //   throw new ForbiddenException('walletID not found')
+    // }
+
+    console.debug({ createBoardInput })
+
+    const walletId = null
+
+    // const walletId = ctx.getContext().req.user.walletId
+
     return this.boardService.create({
       ...createBoardInput,
       walletId: createBoardInput.walletId ?? walletId,

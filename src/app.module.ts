@@ -50,7 +50,7 @@ console.debug({ mode, envFile })
     }),
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-      context: ({ req }) => ({ req }), //required for cookies
+      context: ({ req, res }) => ({ req, res }), //required for cookies
 
       fieldResolverEnhancers: ['interceptors'], //FIXME:unsure
 
