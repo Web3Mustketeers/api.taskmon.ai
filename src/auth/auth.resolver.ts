@@ -13,7 +13,9 @@ export class AuthResolver {
 
   @Mutation('signIn')
   signIn(@Args('wallet') wallet: string, @Res() res: Response) {
+    console.debug({ res })
+    console.info({ wallet })
     // return this.authService.signin({ wallet }) //FIXME:
-    return this.authController.signin({ wallet }, res)
+    // return this.authController.signin({ wallet }, res)
   }
 }
