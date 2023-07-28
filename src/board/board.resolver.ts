@@ -1,8 +1,19 @@
-import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import {
+  Args,
+  Context,
+  GraphQLExecutionContext,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql'
 import { BoardService } from './board.service'
 import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
+import { UseGuards } from '@nestjs/common'
+import { GqlAuthGuard } from '../auth/guard'
 
 @Resolver('Board')
 // @UseGuards(JwtGuard)
@@ -23,8 +34,9 @@ export class BoardResolver {
   }
 
   @Mutation('createBoard')
+  @UseGuards(GqlAuthGuard)
   create(
-    // @Context() ctx: GraphQLExecutionContext,
+    @Context() ctx: GraphQLExecutionContext,
     @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
     // @GetUser('walletId') walletId: number,
   ) {
@@ -34,6 +46,8 @@ export class BoardResolver {
     // }
 
     console.debug({ createBoardInput })
+
+    console.log(ctx.getInfo<Headers>())
 
     const walletId = null
 
