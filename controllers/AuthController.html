@@ -143,8 +143,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/auth/auth.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/auth/auth.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -208,12 +208,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, HttpCode, HttpStatus, Post, Res } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Injectable,
+  Post,
+  Res,
+} from &#x27;@nestjs/common&#x27;
 import { AuthService } from &#x27;./auth.service&#x27;
 import { AuthDto } from &#x27;./dto&#x27;
 import { Response } from &#x27;express&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
 
+@Injectable()
 @Controller(&#x27;auth&#x27;)
 export class AuthController {
   constructor(private authService: AuthService, private config: ConfigService) {}

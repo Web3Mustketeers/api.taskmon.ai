@@ -178,7 +178,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(createBoardInput: Prisma.BoardCreateInput)</code>
+<code>create(createBoardInput: Prisma.BoardUncheckedCreateInput)</code>
                 </td>
             </tr>
 
@@ -209,7 +209,7 @@
                                 <tr>
                                     <td>createBoardInput</td>
                                     <td>
-                                            <code>Prisma.BoardCreateInput</code>
+                                            <code>Prisma.BoardUncheckedCreateInput</code>
                                     </td>
 
                                     <td>
@@ -385,15 +385,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, walletId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/board/board.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/board/board.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -415,6 +415,18 @@
                             <tbody>
                                 <tr>
                                     <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>walletId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -454,7 +466,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateBoardInput: Prisma.BoardUpdateInput)</code>
+<code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateBoardInput: Prisma.BoardUncheckedUpdateInput, filter: literal type)</code>
                 </td>
             </tr>
 
@@ -497,7 +509,19 @@
                                 <tr>
                                     <td>updateBoardInput</td>
                                     <td>
-                                            <code>Prisma.BoardUpdateInput</code>
+                                            <code>Prisma.BoardUncheckedUpdateInput</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>filter</td>
+                                    <td>
+                                            <code>literal type</code>
                                     </td>
 
                                     <td>
@@ -537,7 +561,7 @@ import { OrderByParams } from &#x27;../graphql&#x27;
 @Injectable()
 export class BoardService {
   constructor(private readonly prisma: PrismaService) {}
-  create(createBoardInput: Prisma.BoardCreateInput) {
+  create(createBoardInput: Prisma.BoardUncheckedCreateInput) {
     return this.prisma.board.create({
       data: createBoardInput,
     })
@@ -558,22 +582,31 @@ export class BoardService {
     })
   }
 
-  update(id: number, updateBoardInput: Prisma.BoardUpdateInput) {
+  update(
+    id: number,
+    updateBoardInput: Prisma.BoardUncheckedUpdateInput,
+    filter: { walletId: number },
+  ) {
     return this.prisma.board.update({
       where: {
         id,
+        ...filter,
       },
       data: updateBoardInput,
     })
   }
 
-  remove(id: number) {
+  remove(id: number, walletId: number) {
     return this.prisma.board.delete({
       where: {
         id,
+        walletId,
       },
     })
   }
+}
+class updateBy {
+  walletId: number
 }
 </code></pre>
     </div>

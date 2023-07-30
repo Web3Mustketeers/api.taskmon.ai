@@ -130,7 +130,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/auth/strategy/jwt.strategy.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/strategy/jwt.strategy.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -208,8 +208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/auth/strategy/jwt.strategy.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/auth/strategy/jwt.strategy.ts:36</a></div>
                 </td>
             </tr>
 
@@ -277,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/auth/strategy/jwt.strategy.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/auth/strategy/jwt.strategy.ts:25</a></div>
                 </td>
             </tr>
 
@@ -316,7 +316,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>{ userId: number; email: string; }</code>
+                        <b>Returns : </b>        <code><a href="../interfaces/User.html" target="_self" >User</a></code>
 
                     </div>
                     <div class="io-description">
@@ -352,7 +352,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/auth/strategy/jwt.strategy.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/auth/strategy/jwt.strategy.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -371,6 +371,7 @@ import { ExtractJwt, Strategy } from &#x27;passport-jwt&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
 import { PrismaService } from &#x27;../../prisma/prisma.service&#x27;
 import { Request as RequestType } from &#x27;express&#x27;
+import { User } from &#x27;../../app.dto&#x27;
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, &#x27;jwt&#x27;) {
@@ -388,7 +389,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, &#x27;jwt&#x27;) {
     })
   }
 
-  validate(payload: { sub: number; email: string }) {
+  validate(payload: { sub: number }): User {
     const user &#x3D; this.prisma.wallet.findUnique({
       where: {
         id: payload.sub,
@@ -396,7 +397,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, &#x27;jwt&#x27;) {
     })
     if (!user) return null //throws the 401 error
 
-    return { userId: payload.sub, email: payload.email }
+    return { walletId: payload.sub } //the payload for jwt
     // whatever is returned is appended to req.user
   }
   private static extractJWTFromCookie(req: RequestType): string | null {

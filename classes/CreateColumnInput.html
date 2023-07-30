@@ -132,7 +132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/graphql.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/graphql.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +158,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/graphql.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/graphql.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -177,10 +177,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class CreateBoardInput {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class AuthInput {
+    wallet: string;
+}
+
+export class CreateBoardInput {
     name: string;
     isActive?: Nullable&lt;boolean&gt;;
-    walletId: number;
+    walletId?: Nullable&lt;number&gt;;
 }
 
 export class UpdateBoardInput {
@@ -229,6 +233,38 @@ export class UpdateTaskInput {
     description?: Nullable&lt;string&gt;;
 }
 
+export class AuthPayload {
+    access_token: string;
+}
+
+export abstract class IMutation {
+    abstract signIn(data: AuthInput): Nullable&lt;AuthPayload&gt; | Promise&lt;Nullable&lt;AuthPayload&gt;&gt;;
+
+    abstract createBoard(data: CreateBoardInput): Board | Promise&lt;Board&gt;;
+
+    abstract updateBoard(id: number, data: UpdateBoardInput): Board | Promise&lt;Board&gt;;
+
+    abstract deleteBoard(id: number): Board | Promise&lt;Board&gt;;
+
+    abstract createColumn(createColumnInput: CreateColumnInput): Column | Promise&lt;Column&gt;;
+
+    abstract updateColumn(updateColumnInput: UpdateColumnInput): Column | Promise&lt;Column&gt;;
+
+    abstract removeColumn(id: number): Nullable&lt;Column&gt; | Promise&lt;Nullable&lt;Column&gt;&gt;;
+
+    abstract createSubTask(createSubTaskInput: CreateSubTaskInput): SubTask | Promise&lt;SubTask&gt;;
+
+    abstract updateSubTask(updateSubTaskInput: UpdateSubTaskInput): SubTask | Promise&lt;SubTask&gt;;
+
+    abstract removeSubTask(id: number): Nullable&lt;SubTask&gt; | Promise&lt;Nullable&lt;SubTask&gt;&gt;;
+
+    abstract createTask(createTaskInput: CreateTaskInput): Task | Promise&lt;Task&gt;;
+
+    abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise&lt;Task&gt;;
+
+    abstract removeTask(id: number): Nullable&lt;Task&gt; | Promise&lt;Nullable&lt;Task&gt;&gt;;
+}
+
 export class Board {
     id: number;
     name: string;
@@ -255,32 +291,6 @@ export abstract class IQuery {
     abstract tasks(): Nullable&lt;Task&gt;[] | Promise&lt;Nullable&lt;Task&gt;[]&gt;;
 
     abstract task(id: number): Nullable&lt;Task&gt; | Promise&lt;Nullable&lt;Task&gt;&gt;;
-}
-
-export abstract class IMutation {
-    abstract createBoard(data: CreateBoardInput): Board | Promise&lt;Board&gt;;
-
-    abstract updateBoard(id: number, data: UpdateBoardInput): Board | Promise&lt;Board&gt;;
-
-    abstract deleteBoard(id: number): Board | Promise&lt;Board&gt;;
-
-    abstract createColumn(createColumnInput: CreateColumnInput): Column | Promise&lt;Column&gt;;
-
-    abstract updateColumn(updateColumnInput: UpdateColumnInput): Column | Promise&lt;Column&gt;;
-
-    abstract removeColumn(id: number): Nullable&lt;Column&gt; | Promise&lt;Nullable&lt;Column&gt;&gt;;
-
-    abstract createSubTask(createSubTaskInput: CreateSubTaskInput): SubTask | Promise&lt;SubTask&gt;;
-
-    abstract updateSubTask(updateSubTaskInput: UpdateSubTaskInput): SubTask | Promise&lt;SubTask&gt;;
-
-    abstract removeSubTask(id: number): Nullable&lt;SubTask&gt; | Promise&lt;Nullable&lt;SubTask&gt;&gt;;
-
-    abstract createTask(createTaskInput: CreateTaskInput): Task | Promise&lt;Task&gt;;
-
-    abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise&lt;Task&gt;;
-
-    abstract removeTask(id: number): Nullable&lt;Task&gt; | Promise&lt;Nullable&lt;Task&gt;&gt;;
 }
 
 export class Column {

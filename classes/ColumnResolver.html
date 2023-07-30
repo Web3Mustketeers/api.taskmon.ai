@@ -136,7 +136,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/column/column.resolver.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/column/column.resolver.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -221,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/column/column.resolver.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/column/column.resolver.ts:18</a></div>
                 </td>
             </tr>
 
@@ -299,8 +299,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/column/column.resolver.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/column/column.resolver.ts:23</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/column/column.resolver.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/column/column.resolver.ts:28</a></div>
                 </td>
             </tr>
 
@@ -423,8 +423,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/column/column.resolver.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/column/column.resolver.ts:38</a></div>
                 </td>
             </tr>
 
@@ -501,8 +501,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/column/column.resolver.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/column/column.resolver.ts:43</a></div>
                 </td>
             </tr>
 
@@ -579,8 +579,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/column/column.resolver.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/column/column.resolver.ts:33</a></div>
                 </td>
             </tr>
 
@@ -643,8 +643,11 @@ import { ColumnService } from &#x27;./column.service&#x27;
 import { CreateColumnInput } from &#x27;./dto/create-column.input&#x27;
 import { Column } from &#x27;../graphql&#x27;
 import { TaskService } from &#x27;../task/task.service&#x27;
+import { UseGuards } from &#x27;@nestjs/common&#x27;
+import { GqlAuthGuard } from &#x27;../auth/guard&#x27;
 
 @Resolver(&#x27;Column&#x27;)
+@UseGuards(GqlAuthGuard)
 export class ColumnResolver {
   constructor(
     private readonly columnService: ColumnService,
