@@ -43,6 +43,14 @@ Content-Type: application/json
 
 {"query":"query Query {\n  boards {\n    id   \n name }\n}"}
 
+### Boards with cookie
+
+POST {{u}}/graphql
+Content-Type: application/json
+
+{"query":"query Query {\n  boards {\n    id   \n name }\n}"}
+
+
 
 ### Create Board
 
