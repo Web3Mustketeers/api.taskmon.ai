@@ -1,11 +1,18 @@
-import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql'
 import { BoardService } from './board.service'
 import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
 import { ForbiddenException, UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guard'
-import { GetUser } from '../auth/decorator'
 
 @Resolver('Board')
 @UseGuards(GqlAuthGuard)
@@ -28,8 +35,10 @@ export class BoardResolver {
   @Mutation('createBoard')
   create(
     @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
-    @GetUser() user: any,
+    @Context() ctx: any, //GraphQLRequestContext<any>, //FIXME: find type
   ) {
+    const { user } = ctx.req
+    console.log({ user })
     const walletId = user.walletId
 
     console.debug({ walletId })

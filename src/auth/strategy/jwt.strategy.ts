@@ -29,7 +29,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     })
     if (!user) return null //throws the 401 error
 
-    return { userId: payload.sub, email: payload.email }
+    return { walletId: payload.sub } //the payload for jwt
     // whatever is returned is appended to req.user
   }
   private static extractJWTFromCookie(req: RequestType): string | null {
