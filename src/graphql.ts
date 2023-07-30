@@ -8,6 +8,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class AuthInput {
+    wallet: string;
+}
+
 export class CreateBoardInput {
     name: string;
     isActive?: Nullable<boolean>;
@@ -65,7 +69,7 @@ export class AuthPayload {
 }
 
 export abstract class IMutation {
-    abstract signIn(wallet: string): Nullable<AuthPayload> | Promise<Nullable<AuthPayload>>;
+    abstract signIn(data: AuthInput): Nullable<AuthPayload> | Promise<Nullable<AuthPayload>>;
 
     abstract createBoard(data: CreateBoardInput): Board | Promise<Board>;
 

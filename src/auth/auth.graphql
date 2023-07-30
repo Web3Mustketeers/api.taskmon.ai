@@ -2,6 +2,10 @@ type AuthPayload {
     access_token: String!
 }
 
+input AuthInput{
+    wallet: String!
+}
+
 type Mutation {
-    signIn(wallet: String!): AuthPayload
+    signIn(data:AuthInput!): AuthPayload
 }
