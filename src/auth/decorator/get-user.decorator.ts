@@ -1,4 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common'
+import { GraphqlContext } from '../../app.dto'
 
 export const GetUser = createParamDecorator(
   (data: string | undefined, ctx: ExecutionContext) => {
@@ -11,11 +12,13 @@ export const GetUser = createParamDecorator(
 )
 
 export const GetUserGraphql = createParamDecorator(
-  (data: string | undefined, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest()
+  (data: string | undefined, ctx: GraphqlContext) => {
+    const {
+      req: { user },
+    } = ctx
 
-    if (data) return request.user[data]
+    if (data) return user[data]
 
-    return request.user
+    return user
   },
 )

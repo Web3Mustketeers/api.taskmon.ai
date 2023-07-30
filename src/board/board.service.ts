@@ -28,7 +28,7 @@ export class BoardService {
     })
   }
 
-  update(id: number, updateBoardInput: Prisma.BoardUpdateInput) {
+  update(id: number, updateBoardInput: Prisma.BoardUncheckedUpdateInput) {
     return this.prisma.board.update({
       where: {
         id,

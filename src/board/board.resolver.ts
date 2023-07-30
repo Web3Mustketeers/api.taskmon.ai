@@ -8,12 +8,12 @@ import {
   Resolver,
 } from '@nestjs/graphql'
 import { BoardService } from './board.service'
-import { Board, CreateBoardInput, OrderByParams } from '../graphql'
-import { Prisma } from '@prisma/client'
+import { Board, CreateBoardInput, OrderByParams, UpdateBoardInput } from '../graphql'
 import { ColumnService } from '../column/column.service'
 import { ForbiddenException, UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guard'
 import { GraphqlContext } from '../app.dto'
+import { GetUserGraphql } from '../auth/decorator'
 
 @Resolver('Board')
 @UseGuards(GqlAuthGuard)
@@ -56,10 +56,12 @@ export class BoardResolver {
   }
   @Mutation('updateBoard')
   update(
-    @Args('id') id: number,
-    @Args('data') updateBoardInput: Prisma.BoardUpdateInput,
+    @GetUserGraphql('walletId') walletId: number,
+    @Args('id')
+    id: number,
+    @Args('data') updateBoardInput: UpdateBoardInput,
   ) {
-    return this.boardService.update(id, updateBoardInput)
+    return this.boardService.update(id, { ...updateBoardInput, walletId })
   }
 
   @Mutation('deleteBoard')
