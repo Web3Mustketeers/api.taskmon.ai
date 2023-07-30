@@ -28,20 +28,29 @@ export class BoardService {
     })
   }
 
-  update(id: number, updateBoardInput: Prisma.BoardUncheckedUpdateInput) {
+  update(
+    id: number,
+    updateBoardInput: Prisma.BoardUncheckedUpdateInput,
+    filter: { walletId: number },
+  ) {
     return this.prisma.board.update({
       where: {
         id,
+        ...filter,
       },
       data: updateBoardInput,
     })
   }
 
-  remove(id: number) {
+  remove(id: number, walletId: number) {
     return this.prisma.board.delete({
       where: {
         id,
+        walletId,
       },
     })
   }
+}
+class updateBy {
+  walletId: number
 }

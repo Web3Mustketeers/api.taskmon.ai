@@ -61,12 +61,12 @@ export class BoardResolver {
     id: number,
     @Args('data') updateBoardInput: UpdateBoardInput,
   ) {
-    return this.boardService.update(id, { ...updateBoardInput, walletId })
+    return this.boardService.update(id, updateBoardInput, { walletId })
   }
 
   @Mutation('deleteBoard')
-  remove(@Args('id') id: number) {
-    return this.boardService.remove(id)
+  remove(@GetUserGraphql('walletId') walletId: number, @Args('id') id: number) {
+    return this.boardService.remove(id, walletId)
   }
 
   @ResolveField('columns')
