@@ -13,6 +13,7 @@ import { AppController } from './app.controller'
 import { ColumnModule } from './column/column.module'
 import { TaskModule } from './task/task.module'
 import { SubtaskModule } from './subtask/subtask.module'
+import { GraphqlContext } from './app.dto'
 
 let mode = process.env.MODE
 let envFile = '.env'
@@ -50,6 +51,11 @@ console.debug({ mode, envFile })
     }),
     CacheModule.register({ isGlobal: true }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      context: ({ req, res }: GraphqlContext) => ({ req, res }), //required for cookies
+
+      fieldResolverEnhancers: ['interceptors'], //FIXME:unsure
+
+      autoSchemaFile: false, // schema-first
       playground: false,
       driver: ApolloDriver,
       plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
@@ -70,3 +76,10 @@ console.debug({ mode, envFile })
   providers: [AppService],
 })
 export class AppModule {}
+/*export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(cookieParser())
+      .forRoutes({ path: '/graphql', method: RequestMethod.ALL })
+  }
+}*/

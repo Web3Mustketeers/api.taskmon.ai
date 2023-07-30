@@ -1,10 +1,22 @@
-import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql'
 import { BoardService } from './board.service'
-import { Board, OrderByParams } from '../graphql'
-import { Prisma } from '@prisma/client'
+import { Board, CreateBoardInput, OrderByParams, UpdateBoardInput } from '../graphql'
 import { ColumnService } from '../column/column.service'
+import { ForbiddenException, UseGuards } from '@nestjs/common'
+import { GqlAuthGuard } from '../auth/guard'
+import { GraphqlContext } from '../app.dto'
+import { GetUserGraphql } from '../auth/decorator'
 
 @Resolver('Board')
+@UseGuards(GqlAuthGuard)
 export class BoardResolver {
   constructor(
     private readonly boardService: BoardService,
@@ -22,21 +34,39 @@ export class BoardResolver {
   }
 
   @Mutation('createBoard')
-  create(@Args('data') createBoardInput: Prisma.BoardCreateInput) {
+  create(
+    @Args('data') createBoardInput: CreateBoardInput,
+    @Context() ctx: GraphqlContext,
+  ) {
+    const { user } = ctx.req
+    console.log({ user })
+    const walletId = user.walletId
+
+    console.debug({ walletId })
+    if (!walletId) {
+      throw new ForbiddenException('walletID not found')
+    }
+
     console.debug({ createBoardInput })
-    return this.boardService.create(createBoardInput)
+
+    return this.boardService.create({
+      ...createBoardInput,
+      walletId: createBoardInput.walletId ?? walletId,
+    })
   }
   @Mutation('updateBoard')
   update(
-    @Args('id') id: number,
-    @Args('data') updateBoardInput: Prisma.BoardUpdateInput,
+    @GetUserGraphql('walletId') walletId: number,
+    @Args('id')
+    id: number,
+    @Args('data') updateBoardInput: UpdateBoardInput,
   ) {
-    return this.boardService.update(id, updateBoardInput)
+    return this.boardService.update(id, updateBoardInput, { walletId })
   }
 
   @Mutation('deleteBoard')
-  remove(@Args('id') id: number) {
-    return this.boardService.remove(id)
+  remove(@GetUserGraphql('walletId') walletId: number, @Args('id') id: number) {
+    return this.boardService.remove(id, walletId)
   }
 
   @ResolveField('columns')

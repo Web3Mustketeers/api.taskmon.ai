@@ -8,16 +8,25 @@ import { PrismaClientExceptionFilter } from '../utils/catch_db_exceptions'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }))
+  app.useGlobalPipes(new ValidationPipe({ whitelist: false })) //whitelist: true FAILS cuz graphql generated classes has no class validator decorators hence returns a empty {}
 
   const config = app.get<ConfigService>(ConfigService)
   app.enableShutdownHooks()
 
   app.use(cookieParser(config.get('JWT_SECRET')))
-  app.enableCors()
+  app.enableCors({
+    origin: [
+      'https://studio.apollographql.com',
+      'surge.sh',
+      'github.io',
+      'vercel.app',
+      '*',
+    ],
+    credentials: true,
+  })
   // app.useGlobalFilters(new DbExceptionFilter())
   const { httpAdapter } = app.get(HttpAdapterHost) //FIXME: not required as nestJS already provides access to the res object
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter)) //FIXME: reason why this is required
   app.enableVersioning({
     type: VersioningType.HEADER,
     header: 'Accept-Version',

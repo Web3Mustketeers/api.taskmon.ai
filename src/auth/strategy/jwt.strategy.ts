@@ -4,6 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt'
 import { ConfigService } from '@nestjs/config'
 import { PrismaService } from '../../prisma/prisma.service'
 import { Request as RequestType } from 'express'
+import { User } from '../../app.dto'
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
@@ -21,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     })
   }
 
-  validate(payload: { sub: number; email: string }) {
+  validate(payload: { sub: number }): User {
     const user = this.prisma.wallet.findUnique({
       where: {
         id: payload.sub,
@@ -29,7 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     })
     if (!user) return null //throws the 401 error
 
-    return { userId: payload.sub, email: payload.email }
+    return { walletId: payload.sub } //the payload for jwt
     // whatever is returned is appended to req.user
   }
   private static extractJWTFromCookie(req: RequestType): string | null {
