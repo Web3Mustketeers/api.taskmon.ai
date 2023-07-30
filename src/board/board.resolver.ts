@@ -13,6 +13,7 @@ import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
 import { ForbiddenException, UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guard'
+import { GraphqlContext } from '../app.dto'
 
 @Resolver('Board')
 @UseGuards(GqlAuthGuard)
@@ -35,7 +36,7 @@ export class BoardResolver {
   @Mutation('createBoard')
   create(
     @Args('data') createBoardInput: CreateBoardInput,
-    @Context() ctx: any, //FIXME: find type
+    @Context() ctx: GraphqlContext, //FIXME: find type
   ) {
     const { user } = ctx.req
     console.log({ user })
