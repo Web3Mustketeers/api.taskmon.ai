@@ -8,7 +8,7 @@ import { PrismaClientExceptionFilter } from '../utils/catch_db_exceptions'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  // app.useGlobalPipes(new ValidationPipe({ whitelist: true })) //FAILS cuz graphql generated classes has no class validator decorators
+  // app.useGlobalPipes(new ValidationPipe({ whitelist: true })) //FAILS cuz graphql generated classes has no class validator decorators hence returns a empty {}
 
   const config = app.get<ConfigService>(ConfigService)
   app.enableShutdownHooks()
