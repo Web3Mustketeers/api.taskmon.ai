@@ -36,7 +36,7 @@ export class BoardResolver {
   @Mutation('createBoard')
   create(
     @Args('data') createBoardInput: CreateBoardInput,
-    @Context() ctx: GraphqlContext, //FIXME: find type
+    @Context() ctx: GraphqlContext,
   ) {
     const { user } = ctx.req
     console.log({ user })
