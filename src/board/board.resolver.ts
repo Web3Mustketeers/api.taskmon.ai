@@ -34,8 +34,8 @@ export class BoardResolver {
 
   @Mutation('createBoard')
   create(
-    @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
-    @Context() ctx: any, //GraphQLRequestContext<any>, //FIXME: find type
+    @Args('data') createBoardInput: CreateBoardInput, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
+    @Context() ctx: any, //FIXME: find type
   ) {
     const { user } = ctx.req
     console.log({ user })
