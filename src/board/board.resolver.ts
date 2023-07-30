@@ -34,7 +34,7 @@ export class BoardResolver {
 
   @Mutation('createBoard')
   create(
-    @Args('data') createBoardInput: CreateBoardInput, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
+    @Args('data') createBoardInput: CreateBoardInput,
     @Context() ctx: any, //FIXME: find type
   ) {
     const { user } = ctx.req
