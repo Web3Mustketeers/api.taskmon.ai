@@ -11,13 +11,15 @@ Content-Type: application/json
 
 
 ### Signin
-POST {{u}}/graphql
+POST http://localhost:1606/graphql
 Content-Type: application/json
 
 {
-  "query": "mutation SignIn($wallet: String!) {\n  signIn(wallet: $wallet) {\n    access_token\n  }\n}",
+  "query": "mutation SignIn($data: AuthInput!) {\n  signIn(data: $data) {\n    access_token\n  }\n}",
   "variables": {
-    "wallet": "eH9js2vBZGCxb3MmweX9zkJDHp7DmJuZS31tTrQFw8e"
+    "data": {
+      "wallet": "eH9js2vBZGCxb3MmweX9zkJDHp7DmJuZS31tTrQFw8e"
+    }
   }
 }
 

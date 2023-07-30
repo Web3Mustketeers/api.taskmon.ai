@@ -13,9 +13,10 @@ export class BoardService {
     })
   }
 
-  findAll(orderBy?: OrderByParams) {
+  findAll(where?: { walletId: number }, orderBy?: OrderByParams) {
     const { field = 'createdAt', direction = 'desc' } = orderBy || {}
     return this.prisma.board.findMany({
+      where: where,
       orderBy: {
         [field]: direction,
       },
