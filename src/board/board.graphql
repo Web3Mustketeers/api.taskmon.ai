@@ -15,6 +15,7 @@ input CreateBoardInput {
     name: String!
     isActive: Boolean
     walletId: Int
+#    FIXME: remove walletID
 }
 
 input UpdateBoardInput{
