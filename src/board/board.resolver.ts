@@ -1,22 +1,14 @@
-import {
-  Args,
-  Context,
-  GraphQLExecutionContext,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql'
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { BoardService } from './board.service'
 import { Board, CreateBoardInput, OrderByParams } from '../graphql'
 import { Prisma } from '@prisma/client'
 import { ColumnService } from '../column/column.service'
-import { UseGuards } from '@nestjs/common'
+import { ForbiddenException, UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guard'
+import { GetUser } from '../auth/decorator'
 
 @Resolver('Board')
-// @UseGuards(JwtGuard)
+@UseGuards(GqlAuthGuard)
 export class BoardResolver {
   constructor(
     private readonly boardService: BoardService,
@@ -34,24 +26,16 @@ export class BoardResolver {
   }
 
   @Mutation('createBoard')
-  @UseGuards(GqlAuthGuard)
   create(
-    @Context() ctx: GraphQLExecutionContext,
     @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
-    // @GetUser('walletId') walletId: number,
+    @GetUser('walletId') walletId: number,
   ) {
-    // console.debug({ walletId })
-    // if (!walletId) {
-    //   throw new ForbiddenException('walletID not found')
-    // }
+    console.debug({ walletId })
+    if (!walletId) {
+      throw new ForbiddenException('walletID not found')
+    }
 
     console.debug({ createBoardInput })
-
-    console.log(ctx.getInfo<Headers>())
-
-    const walletId = null
-
-    // const walletId = ctx.getContext().req.user.walletId
 
     return this.boardService.create({
       ...createBoardInput,
