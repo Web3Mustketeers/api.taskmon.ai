@@ -42,3 +42,22 @@ Content-Type: application/json
 {"query":"query Query {\n  boards {\n    id   \n name }\n}"}
 
 
+### Create Board
+
+POST http://localhost:1606/graphql
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "query": "mutation Mutation($data: CreateBoardInput!) {\n  createBoard(data: $data) {\n    name\n    id\n    isActive\n    walletId\n  }\n}",
+  "variables": {
+    "data": {
+      "name": "naaa",
+      "isActive": false
+    }
+  }
+}
+
+###
+
+

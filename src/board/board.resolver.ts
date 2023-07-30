@@ -28,8 +28,10 @@ export class BoardResolver {
   @Mutation('createBoard')
   create(
     @Args('data') createBoardInput: CreateBoardInput | any, //FIXME: figure out why CreateBoardInput returns {} but any returns properly
-    @GetUser('walletId') walletId: number,
+    @GetUser() user: any,
   ) {
+    const walletId = user.walletId
+
     console.debug({ walletId })
     if (!walletId) {
       throw new ForbiddenException('walletID not found')
