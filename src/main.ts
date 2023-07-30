@@ -26,7 +26,7 @@ async function bootstrap() {
   })
   // app.useGlobalFilters(new DbExceptionFilter())
   const { httpAdapter } = app.get(HttpAdapterHost) //FIXME: not required as nestJS already provides access to the res object
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter))
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter)) //FIXME: reason why this is required
   app.enableVersioning({
     type: VersioningType.HEADER,
     header: 'Accept-Version',
