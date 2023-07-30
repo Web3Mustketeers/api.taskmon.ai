@@ -1,7 +1,6 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql'
 import { AuthService } from './auth.service'
 import { AuthController } from './auth.controller'
-import { GraphQLRequestContext } from '@apollo/server'
 
 @Resolver('Auth')
 export class AuthResolver {
@@ -11,10 +10,7 @@ export class AuthResolver {
   ) {}
 
   @Mutation('signIn')
-  async signIn(
-    @Args('wallet') wallet: string,
-    @Context() ctx: GraphQLRequestContext<GraphQLRequestContext<any>>,
-  ) {
+  async signIn(@Args('wallet') wallet: string, @Context() ctx: any) {
     // const { res } = ctx
     /*  res.cookie('cookieName', 'cookieValue', {
       // ...Cookie options
@@ -22,16 +18,17 @@ export class AuthResolver {
 
     console.info({ wallet })
     // return this.authService.signin({ wallet }) //FIXME:
-    /*   const context = ctx.getContext()
+    const context = ctx.getContext()
 
     context.res.cookie('some-cookie', 'some-value')
-    context.res.header('some-header', 'some-header')*/
+    context.res.header('some-header', 'some-header')
 
     // ctx.switchToHttp().getResponse<Response>().cookie('some-cookie', 'some-value')
     // ctx.switchToHttp().getResponse<Response>().header('some-header', 'some-header')
 
     const dto = await this.authService.signin({ wallet })
 
+    // return this.authController.signin({ dto })
     return dto
   }
 }
