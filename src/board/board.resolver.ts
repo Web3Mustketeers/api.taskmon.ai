@@ -24,13 +24,16 @@ export class BoardResolver {
   ) {}
 
   @Query('boards')
-  findAll(@Args('orderBy') orderBy?: OrderByParams) {
-    return this.boardService.findAll(orderBy)
+  findAll(
+    @GetUserGraphql('walletId') walletId: number,
+    @Args('orderBy') orderBy?: OrderByParams,
+  ) {
+    return this.boardService.findAll({ walletId }, orderBy)
   }
 
   @Query('board')
-  findOne(@Args('id') id: number) {
-    return this.boardService.findOne({ id })
+  findOne(@GetUserGraphql('walletId') walletId: number, @Args('id') id: number) {
+    return this.boardService.findOne({ id, walletId })
   }
 
   @Mutation('createBoard')

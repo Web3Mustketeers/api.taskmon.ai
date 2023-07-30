@@ -20,6 +20,7 @@ async function bootstrap() {
       'surge.sh',
       'github.io',
       'vercel.app',
+      'localhost',
       '*',
     ],
     credentials: true,
