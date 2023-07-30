@@ -247,7 +247,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAll(orderBy?: <a href="../classes/OrderByParams.html" target="_self">OrderByParams</a>)</code>
+<code>findAll(where?: literal type, orderBy?: <a href="../classes/OrderByParams.html" target="_self">OrderByParams</a>)</code>
                 </td>
             </tr>
 
@@ -275,6 +275,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>where</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>orderBy</td>
                                     <td>
@@ -323,8 +335,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/board/board.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/board/board.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -392,8 +404,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/board/board.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/board/board.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -473,8 +485,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/board/board.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/board/board.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -567,9 +579,10 @@ export class BoardService {
     })
   }
 
-  findAll(orderBy?: OrderByParams) {
+  findAll(where?: { walletId: number }, orderBy?: OrderByParams) {
     const { field &#x3D; &#x27;createdAt&#x27;, direction &#x3D; &#x27;desc&#x27; } &#x3D; orderBy || {}
     return this.prisma.board.findMany({
+      where: where,
       orderBy: {
         [field]: direction,
       },

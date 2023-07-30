@@ -221,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/board/board.resolver.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/board/board.resolver.ts:76</a></div>
                 </td>
             </tr>
 
@@ -299,8 +299,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/board/board.resolver.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/board/board.resolver.ts:40</a></div>
                 </td>
             </tr>
 
@@ -375,7 +375,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(orderBy?: <a href="../classes/OrderByParams.html" target="_self">OrderByParams</a>)</code>
+                    <code>findAll(walletId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, orderBy?: <a href="../classes/OrderByParams.html" target="_self">OrderByParams</a>)</code>
                 </td>
             </tr>
 
@@ -410,6 +410,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>walletId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>orderBy</td>
                                     <td>
@@ -453,7 +465,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOne(walletId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -467,8 +479,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/board/board.resolver.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/board/board.resolver.ts:35</a></div>
                 </td>
             </tr>
 
@@ -488,6 +500,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>walletId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>id</td>
                                     <td>
@@ -545,8 +569,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/board/board.resolver.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/board/board.resolver.ts:71</a></div>
                 </td>
             </tr>
 
@@ -635,8 +659,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/board/board.resolver.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/board/board.resolver.ts:61</a></div>
                 </td>
             </tr>
 
@@ -744,13 +768,16 @@ export class BoardResolver {
   ) {}
 
   @Query(&#x27;boards&#x27;)
-  findAll(@Args(&#x27;orderBy&#x27;) orderBy?: OrderByParams) {
-    return this.boardService.findAll(orderBy)
+  findAll(
+    @GetUserGraphql(&#x27;walletId&#x27;) walletId: number,
+    @Args(&#x27;orderBy&#x27;) orderBy?: OrderByParams,
+  ) {
+    return this.boardService.findAll({ walletId }, orderBy)
   }
 
   @Query(&#x27;board&#x27;)
-  findOne(@Args(&#x27;id&#x27;) id: number) {
-    return this.boardService.findOne({ id })
+  findOne(@GetUserGraphql(&#x27;walletId&#x27;) walletId: number, @Args(&#x27;id&#x27;) id: number) {
+    return this.boardService.findOne({ id, walletId })
   }
 
   @Mutation(&#x27;createBoard&#x27;)

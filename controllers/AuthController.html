@@ -249,6 +249,7 @@ export class AuthController {
       maxAge: this.config.get(&#x27;JWT_SECRET&#x27;) * 1000 || 60 * 60 * 1000,
       secure: true,
       httpOnly: true,
+      sameSite: &#x27;none&#x27;,
       // signed: true,
     })
 

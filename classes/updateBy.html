@@ -129,7 +129,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/board/board.service.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/board/board.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -163,9 +163,10 @@ export class BoardService {
     })
   }
 
-  findAll(orderBy?: OrderByParams) {
+  findAll(where?: { walletId: number }, orderBy?: OrderByParams) {
     const { field &#x3D; &#x27;createdAt&#x27;, direction &#x3D; &#x27;desc&#x27; } &#x3D; orderBy || {}
     return this.prisma.board.findMany({
+      where: where,
       orderBy: {
         [field]: direction,
       },
