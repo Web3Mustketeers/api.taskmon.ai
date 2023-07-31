@@ -55,15 +55,15 @@
 </ul>
 <h3>Technical methodologies followed</h3>
 <ul>
-<li>Modular architecture: Tasks &amp; Auth handled in separate modules, separating concerns.</li>
+<li>Modular architecture: Business Logic &amp; Auth handled in separate modules, separating concerns.</li>
 <li>HTTP requests are handled by Controllers</li>
-<li>API documentation using nest/swagger module</li>
+<li><s> API documentation using nest/swagger module </s></li>
 <li>Business logic is implemented in Services</li>
-<li>Database interactions are handled in Repository classes using TypeORM</li>
+<li>Database interactions are handled  using Prisma</li>
 <li>Validation using NestJS Pipes</li>
 <li>Data Transfer Object(DTO) pattern for transferring data between layers</li>
 <li>Configuration management using .env files for development, test &amp; prod configs</li>
-<li>Authentication / Authorization, Task ownership by users</li>
+<li>Authentication / Authorization, Event ownership by users</li>
 <li>PassportJS, JWT tokens, Password hashing, salts</li>
 <li>Unit tests using Jest</li>
 <li>Supertest for E2E testing</li>
